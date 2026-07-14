@@ -23,14 +23,14 @@
     --text:#F5F0E8;
     --text-muted:#A79E93;
     --ink:#0A090C;
-    --glow-sm:0 0 12px rgba(255,95,0,.55);
-    --glow-md:0 0 24px rgba(255,95,0,.5), 0 0 60px rgba(255,95,0,.2);
-    --glow-text:0 0 10px rgba(255,95,0,.75), 0 0 22px rgba(255,95,0,.4);
+    --glow-sm:0 0 7px rgba(255,95,0,.35);
+    --glow-md:0 0 14px rgba(255,95,0,.3), 0 0 34px rgba(255,95,0,.12);
+    --glow-text:0 0 6px rgba(255,95,0,.45), 0 0 13px rgba(255,95,0,.22);
 }
 
 @keyframes neonPulse{
-    0%,100%{ box-shadow:0 0 14px rgba(255,95,0,.5), 0 0 34px rgba(255,95,0,.2); }
-    50%{ box-shadow:0 0 22px rgba(255,95,0,.8), 0 0 55px rgba(255,95,0,.35); }
+    0%,100%{ box-shadow:0 0 8px rgba(255,95,0,.3), 0 0 20px rgba(255,95,0,.12); }
+    50%{ box-shadow:0 0 13px rgba(255,95,0,.5), 0 0 32px rgba(255,95,0,.2); }
 }
 
 .btn-outline{
@@ -82,7 +82,7 @@ overflow-x:hidden;
     position:absolute;
     border-radius:50%;
     filter:blur(90px);
-    opacity:.35;
+    opacity:.22;
 }
 
 .ember-1{
@@ -278,7 +278,7 @@ font-weight:600;
     height:360px;
     object-fit:cover;
     border-radius:20px;
-    box-shadow:0 15px 35px rgba(255,106,43,.25);
+    box-shadow:0 15px 35px rgba(255,106,43,.16);
     transition:.3s;
 }
 
@@ -366,7 +366,7 @@ gap:25px;
 .card:hover{
     transform:translateY(-12px);
     background:rgba(255,255,255,.1);
-    box-shadow:0 0 40px rgba(255,95,0,.35), 0 20px 40px rgba(0,0,0,.4);
+    box-shadow:0 0 22px rgba(255,95,0,.22), 0 20px 40px rgba(0,0,0,.4);
 }
 
 .card h3{
@@ -431,6 +431,134 @@ margin-bottom:10px;
 }
 
 /* CASE */
+
+.cases-subtitle{
+    text-align:center;
+    color:var(--text-muted);
+    font-size:18px;
+    margin-top:-15px;
+    margin-bottom:40px;
+}
+
+.case-study{
+    position:relative;
+    max-width:640px;
+    margin:0 auto;
+    background:var(--surface);
+    border:1px solid var(--border);
+    border-radius:28px;
+    padding:44px;
+    box-shadow:0 10px 25px rgba(255,106,43,.08);
+}
+
+.case-ribbon{
+    position:absolute;
+    top:-16px;
+    left:32px;
+    background:var(--accent);
+    color:var(--ink);
+    font-weight:800;
+    font-size:14px;
+    padding:8px 18px;
+    border-radius:50px;
+    box-shadow:var(--glow-sm);
+}
+
+.case-stat-card{
+    background:var(--surface-2);
+    border:1px solid var(--border);
+    border-radius:20px;
+    padding:24px;
+    margin-bottom:26px;
+}
+
+.case-stat-header{
+    display:flex;
+    align-items:center;
+    gap:12px;
+    flex-wrap:wrap;
+    margin-bottom:18px;
+}
+
+.case-tag{
+    background:rgba(255,95,0,.14);
+    color:var(--accent);
+    font-weight:800;
+    font-size:13px;
+    padding:6px 14px;
+    border-radius:8px;
+}
+
+.case-overdone{
+    color:var(--accent-soft);
+    font-weight:700;
+    font-size:14px;
+}
+
+.progress-bar{
+    display:flex;
+    gap:6px;
+    margin-bottom:14px;
+}
+
+.progress-bar span{
+    flex:1;
+    height:10px;
+    border-radius:6px;
+    background:var(--accent);
+    box-shadow:0 0 6px rgba(255,95,0,.35);
+}
+
+.case-stat-footer{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    color:var(--text-muted);
+    font-size:15px;
+}
+
+.case-percent{
+    color:#5FD98A;
+    font-weight:800;
+}
+
+.case-chat{
+    display:flex;
+    flex-direction:column;
+    gap:10px;
+    margin-bottom:24px;
+}
+
+.chat-msg{
+    max-width:85%;
+    padding:14px 18px;
+    border-radius:16px;
+    font-size:15px;
+    line-height:1.5;
+}
+
+.chat-msg-client{
+    align-self:flex-start;
+    background:var(--surface-2);
+    color:var(--text);
+    border-bottom-left-radius:4px;
+}
+
+.chat-msg-us{
+    align-self:flex-end;
+    background:var(--accent);
+    color:var(--ink);
+    border-bottom-right-radius:4px;
+    font-weight:600;
+}
+
+.case-comment{
+    color:var(--text-muted);
+    font-size:16px;
+    line-height:1.7;
+    text-align:center;
+    margin:0;
+}
 
 .case-box{
 background:var(--surface);
@@ -650,9 +778,21 @@ display:none;
     height:360px;
     object-fit:cover;
     border-radius:20px;
-    box-shadow:0 15px 35px rgba(255,106,43,.25);
+    box-shadow:0 15px 35px rgba(255,106,43,.16);
     cursor:pointer;
     transition:.3s;
+}
+
+.video-img.wide{
+    width:480px;
+    height:270px;
+}
+
+@media(max-width:900px){
+    .video-img.wide{
+        width:280px;
+        height:158px;
+    }
 }
 
 .video-img:hover{
@@ -789,7 +929,7 @@ display:none;
     height:auto;
     max-width:100%;
     border-radius:20px;
-    box-shadow:0 15px 35px rgba(255,106,43,.25);
+    box-shadow:0 15px 35px rgba(255,106,43,.16);
 }
 
 .arrow{
@@ -868,7 +1008,7 @@ display:none;
 
 .price-card:hover{
     transform:translateY(-10px) scale(1.03);
-    box-shadow:0 20px 40px rgba(255,106,43,.3);
+    box-shadow:0 14px 28px rgba(255,106,43,.18);
 }
 
 .order-btn{
@@ -1152,6 +1292,10 @@ Minecraft Promotion • TikTok • YouTube Shorts
         <button class="tab-btn" onclick="showTab('author', this)">
             Авторский контент
         </button>
+
+        <button class="tab-btn" onclick="showTab('longform', this)">
+            Длинные видео
+        </button>
     </div>
 
     <!-- TikTok -->
@@ -1265,6 +1409,37 @@ Minecraft Promotion • TikTok • YouTube Shorts
             </div>
 
             <button class="arrow" onclick="nextAuthor()">
+                &#10095;
+            </button>
+
+        </div>
+
+    </div>
+
+    <!-- Длинные видео -->
+    <div id="longform" class="tab-content">
+
+        <div class="youtube-slider">
+
+            <button class="arrow" onclick="prevLong()">
+                &#10094;
+            </button>
+
+            <div class="slide active">
+                <img src="images/long1.jpg" class="video-img wide" alt="Длинное видео о развитии Minecraft-сервера, пример 1">
+                <a href="#" target="_blank" class="video-link">
+                    Смотреть
+                </a>
+            </div>
+
+            <div class="slide">
+                <img src="images/long2.jpg" class="video-img wide" alt="Длинное видео о развитии Minecraft-сервера, пример 2">
+                <a href="#" target="_blank" class="video-link">
+                    Смотреть
+                </a>
+            </div>
+
+            <button class="arrow" onclick="nextLong()">
                 &#10095;
             </button>
 
@@ -1401,15 +1576,49 @@ Minecraft Promotion • TikTok • YouTube Shorts
 <div class="container">
 
 <h2 class="title">Кейсы</h2>
+<p class="cases-subtitle">Реальный результат — наш первый кейс</p>
 
-<div class="case-box">
+<div class="case-study reveal">
 
-<h3>Стань успешным кейсом MC.PROMO</h3>
+    <span class="case-ribbon">🏆 Первый кейс</span>
 
-<p>
-Сейчас мы активно расширяем список партнёров и готовы показать результат на вашем сервере.
-Возможно именно ваш проект станет следующим кейсом с сотнями тысяч просмотров и новым онлайном.
-</p>
+    <div class="case-stat-card">
+
+        <div class="case-stat-header">
+            <span class="case-tag">TikTok</span>
+            <span class="case-overdone">Перевыполнено на 16%</span>
+        </div>
+
+        <div class="progress-bar">
+            <span></span><span></span><span></span><span></span><span></span>
+            <span></span><span></span><span></span><span></span><span></span>
+            <span></span><span></span><span></span><span></span><span></span>
+            <span></span><span></span><span></span><span></span><span></span>
+        </div>
+
+        <div class="case-stat-footer">
+            <span>58 185 / 50 000 просмотров</span>
+            <span class="case-percent">116.4%</span>
+        </div>
+
+    </div>
+
+    <div class="case-chat">
+
+        <div class="chat-msg chat-msg-client">
+            Привет, там с заходами на сервер не слишком печально?
+        </div>
+
+        <div class="chat-msg chat-msg-us">
+            По ошибке предоставили вам поддомен, на котором уже был источник трафика, но даже так результат виден
+        </div>
+
+    </div>
+
+    <p class="case-comment">
+        Даже с технической накладкой ролик перевыполнил план по просмотрам почти на 16%,
+        а сервер получил заметный приток новых игроков.
+    </p>
 
 </div>
 
@@ -1747,6 +1956,37 @@ function prevAuthor(){
     }
 
     showAuthor(authorIndex);
+}
+
+let longIndex = 0;
+
+function showLong(index){
+    const slides = document.querySelectorAll('#longform .slide');
+
+    slides.forEach(slide => slide.classList.remove('active'));
+    slides[index].classList.add('active');
+}
+
+function nextLong(){
+    const slides = document.querySelectorAll('#longform .slide');
+
+    longIndex++;
+    if(longIndex >= slides.length){
+        longIndex = 0;
+    }
+
+    showLong(longIndex);
+}
+
+function prevLong(){
+    const slides = document.querySelectorAll('#longform .slide');
+
+    longIndex--;
+    if(longIndex < 0){
+        longIndex = slides.length - 1;
+    }
+
+    showLong(longIndex);
 }
 </script>
 
