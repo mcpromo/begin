@@ -552,6 +552,27 @@ margin-bottom:10px;
     font-weight:600;
 }
 
+.case-images{
+    display:flex;
+    flex-direction:column;
+    gap:18px;
+    margin-bottom:24px;
+}
+
+.case-img{
+    width:100%;
+    border-radius:16px;
+    border:1px solid var(--border);
+    box-shadow:0 10px 25px rgba(255,106,43,.08);
+    cursor:pointer;
+    transition:.3s;
+}
+
+.case-img:hover{
+    transform:scale(1.01);
+    box-shadow:var(--glow-sm);
+}
+
 .case-comment{
     color:var(--text-muted);
     font-size:16px;
@@ -1582,37 +1603,9 @@ Minecraft Promotion • TikTok • YouTube Shorts
 
     <span class="case-ribbon">🏆 Первый кейс</span>
 
-    <div class="case-stat-card">
-
-        <div class="case-stat-header">
-            <span class="case-tag">TikTok</span>
-            <span class="case-overdone">Перевыполнено на 16%</span>
-        </div>
-
-        <div class="progress-bar">
-            <span></span><span></span><span></span><span></span><span></span>
-            <span></span><span></span><span></span><span></span><span></span>
-            <span></span><span></span><span></span><span></span><span></span>
-            <span></span><span></span><span></span><span></span><span></span>
-        </div>
-
-        <div class="case-stat-footer">
-            <span>58 185 / 50 000 просмотров</span>
-            <span class="case-percent">116.4%</span>
-        </div>
-
-    </div>
-
-    <div class="case-chat">
-
-        <div class="chat-msg chat-msg-client">
-            Привет, там с заходами на сервер не слишком печально?
-        </div>
-
-        <div class="chat-msg chat-msg-us">
-            По ошибке предоставили вам поддомен, на котором уже был источник трафика, но даже так результат виден
-        </div>
-
+    <div class="case-images">
+        <img src="images/case1-stats.png" class="case-img" alt="Статистика по кейсу: TikTok, перевыполнено на 16%, 58 185 из 50 000 просмотров">
+        <img src="images/case1-chat.png" class="case-img" alt="Переписка с клиентом о результатах продвижения">
     </div>
 
     <p class="case-comment">
@@ -1791,7 +1784,7 @@ Minecraft Promotion • TikTok • YouTube Shorts
 <script>
 const modal = document.getElementById('imageModal');
 const modalImg = document.getElementById('modalImg');
-const images = document.querySelectorAll('.video-img');
+const images = document.querySelectorAll('.video-img, .case-img');
 const close = document.querySelector('.close');
 
 images.forEach(img => {
