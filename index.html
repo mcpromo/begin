@@ -440,6 +440,13 @@ margin-bottom:10px;
     margin-bottom:40px;
 }
 
+.cases-grid{
+    display:grid;
+    grid-template-columns:repeat(auto-fit, minmax(420px, 1fr));
+    gap:40px;
+    align-items:start;
+}
+
 .case-study{
     position:relative;
     max-width:640px;
@@ -579,6 +586,32 @@ margin-bottom:10px;
     line-height:1.7;
     text-align:center;
     margin:0;
+}
+
+.case-stats-list{
+    list-style:none;
+    display:flex;
+    flex-direction:column;
+    gap:12px;
+    margin:0;
+    padding:0;
+}
+
+.case-stats-list li{
+    position:relative;
+    padding-left:30px;
+    color:var(--text);
+    font-size:16px;
+    font-weight:600;
+}
+
+.case-stats-list li::before{
+    content:"✓";
+    position:absolute;
+    left:0;
+    top:0;
+    color:var(--accent);
+    font-weight:800;
 }
 
 .case-box{
@@ -802,18 +835,6 @@ display:none;
     box-shadow:0 15px 35px rgba(255,106,43,.16);
     cursor:pointer;
     transition:.3s;
-}
-
-.video-img.wide{
-    width:480px;
-    height:270px;
-}
-
-@media(max-width:900px){
-    .video-img.wide{
-        width:280px;
-        height:158px;
-    }
 }
 
 .video-img:hover{
@@ -1313,10 +1334,6 @@ Minecraft Promotion • TikTok • YouTube Shorts
         <button class="tab-btn" onclick="showTab('author', this)">
             Авторский контент
         </button>
-
-        <button class="tab-btn" onclick="showTab('longform', this)">
-            Длинные видео
-        </button>
     </div>
 
     <!-- TikTok -->
@@ -1430,37 +1447,6 @@ Minecraft Promotion • TikTok • YouTube Shorts
             </div>
 
             <button class="arrow" onclick="nextAuthor()">
-                &#10095;
-            </button>
-
-        </div>
-
-    </div>
-
-    <!-- Длинные видео -->
-    <div id="longform" class="tab-content">
-
-        <div class="youtube-slider">
-
-            <button class="arrow" onclick="prevLong()">
-                &#10094;
-            </button>
-
-            <div class="slide active">
-                <img src="images/long1.jpg" class="video-img wide" alt="Длинное видео о развитии Minecraft-сервера, пример 1">
-                <a href="#" target="_blank" class="video-link">
-                    Смотреть
-                </a>
-            </div>
-
-            <div class="slide">
-                <img src="images/long2.jpg" class="video-img wide" alt="Длинное видео о развитии Minecraft-сервера, пример 2">
-                <a href="#" target="_blank" class="video-link">
-                    Смотреть
-                </a>
-            </div>
-
-            <button class="arrow" onclick="nextLong()">
                 &#10095;
             </button>
 
@@ -1599,19 +1585,23 @@ Minecraft Promotion • TikTok • YouTube Shorts
 <h2 class="title">Кейсы</h2>
 <p class="cases-subtitle">Реальный результат — наш первый кейс</p>
 
+<div class="cases-grid">
+
 <div class="case-study reveal">
 
     <span class="case-ribbon">🏆 Первый кейс</span>
 
     <div class="case-images">
-        <img src="images/case1-stats.png" class="case-img" alt="Статистика по кейсу: TikTok, перевыполнено на 16%, 58 185 из 50 000 просмотров">
-        <img src="images/case1-chat.png" class="case-img" alt="Переписка с клиентом о результатах продвижения">
+        <img src="images/case1-joins.png" class="case-img" alt="График заходов на сервер по личному IP-адресу: 210 заходов">
     </div>
 
-    <p class="case-comment">
-        Даже с технической накладкой ролик перевыполнил план по просмотрам почти на 16%,
-        а сервер получил заметный приток новых игроков.
-    </p>
+    <ul class="case-stats-list">
+        <li>Тариф: 50 000 просмотров нарезок</li>
+        <li>Выполнили за 13 дней</li>
+        <li>210 заходов по личному IP</li>
+    </ul>
+
+</div>
 
 </div>
 
@@ -1821,7 +1811,7 @@ if (burgerBtn && mobileMenu) {
 
 /* Scroll reveal for cards */
 const revealTargets = document.querySelectorAll(
-    '.card, .stat, .why-card, .price-card, .process-card, .case-box'
+    '.card, .stat, .why-card, .price-card, .process-card, .case-box, .case-study'
 );
 revealTargets.forEach(el => el.classList.add('reveal'));
 
@@ -1949,37 +1939,6 @@ function prevAuthor(){
     }
 
     showAuthor(authorIndex);
-}
-
-let longIndex = 0;
-
-function showLong(index){
-    const slides = document.querySelectorAll('#longform .slide');
-
-    slides.forEach(slide => slide.classList.remove('active'));
-    slides[index].classList.add('active');
-}
-
-function nextLong(){
-    const slides = document.querySelectorAll('#longform .slide');
-
-    longIndex++;
-    if(longIndex >= slides.length){
-        longIndex = 0;
-    }
-
-    showLong(longIndex);
-}
-
-function prevLong(){
-    const slides = document.querySelectorAll('#longform .slide');
-
-    longIndex--;
-    if(longIndex < 0){
-        longIndex = slides.length - 1;
-    }
-
-    showLong(longIndex);
 }
 </script>
 
