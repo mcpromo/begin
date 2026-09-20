@@ -3,1963 +3,1324 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
+<meta name="theme-color" content="#080607">
 <title>MC.PROMO | Продвижение Minecraft серверов</title>
 <meta name="description" content="Продвижение Minecraft-серверов через вирусные нарезки в TikTok и YouTube Shorts. Привлекаем новых игроков на ваш сервер.">
-
 <link rel="preconnect" href="https://fonts.googleapis.com">
-<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
-
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&family=Press+Start+2P&display=swap" rel="stylesheet">
+<script>document.documentElement.classList.add('js');</script>
 <style>
-
+/* ============ TOKENS ============ */
 :root{
-    --bg:#0A090C;
-    --surface:#18151A;
-    --surface-2:#211D24;
-    --border:rgba(244,94,13,.15);
-    --accent:#F45E0D;
-    --accent-dark:#C2440A;
-    --accent-soft:#F8BC55;
-    --text:#F5F0E8;
-    --text-muted:#A79E93;
-    --ink:#0A090C;
-    --glow-sm:0 0 7px rgba(244,94,13,.35);
-    --glow-md:0 0 14px rgba(244,94,13,.3), 0 0 34px rgba(244,94,13,.12);
-    --glow-text:0 0 6px rgba(244,94,13,.4), 0 0 13px rgba(244,94,13,.19);
+  --bg:#080607;
+  --surface:#141013;
+  --surface-2:#1d1619;
+  --line:#3a2b27;
+  --lava:#FF5A1F;
+  --lava-deep:#C93F0B;
+  --gold:#FFC15A;
+  --grass:#5FD98A;
+  --text:#F6EFE7;
+  --muted:#ADA095;
+  --ink:#140805;
+  --font:'Manrope',system-ui,-apple-system,'Segoe UI',Roboto,Arial,sans-serif;
+  --font-px:'Press Start 2P','Courier New',monospace;
+  --n:8px;
 }
 
-@keyframes neonPulse{
-    0%,100%{ box-shadow:0 0 8px rgba(244,94,13,.3), 0 0 20px rgba(244,94,13,.12); }
-    50%{ box-shadow:0 0 13px rgba(244,94,13,.45), 0 0 32px rgba(244,94,13,.18); }
-}
-
-.btn-outline{
-    display:inline-flex;
-    align-items:center;
-    justify-content:center;
-    padding:16px 30px;
-    border:2px solid var(--accent);
-    border-radius:16px;
-    background:transparent;
-    color:var(--accent);
-    text-decoration:none;
-    font-size:18px;
-    font-weight:700;
-    transition:.3s;
-}
-
-.btn-outline:hover{
-    background:var(--accent);
-    color:var(--ink);
-    transform:translateY(-2px);
-}
-*{
-margin:0;
-padding:0;
-box-sizing: border-box;
-font-family:'Manrope',sans-serif;
-}
-
-html{
-scroll-behavior:smooth;
-background:var(--bg);
-}
-
+*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth;background:var(--bg);scroll-padding-top:84px}
 body{
-color:var(--text);
-overflow-x:hidden;
+  font-family:var(--font);
+  color:var(--text);
+  line-height:1.55;
+  overflow-x:hidden;
+  background:
+    radial-gradient(ellipse 70% 45% at 12% -5%, rgba(255,90,31,.20), transparent 70%),
+    radial-gradient(ellipse 80% 40% at 50% 115%, rgba(255,90,31,.16), transparent 70%),
+    var(--bg);
+  background-attachment:fixed;
+}
+img{display:block;max-width:100%}
+a{color:inherit}
+.container{width:90%;max-width:1200px;margin:0 auto}
+section{padding:96px 0;position:relative;z-index:1}
+main,header,footer{position:relative;z-index:1}
+
+:focus-visible{outline:3px solid var(--gold);outline-offset:3px}
+
+#embers{position:fixed;inset:0;z-index:0;pointer-events:none}
+
+/* ============ PIXEL-NOTCH SHAPE ============ */
+.notch,
+.notch::before{
+  clip-path:polygon(
+    0 var(--n), var(--n) var(--n), var(--n) 0,
+    calc(100% - var(--n)) 0, calc(100% - var(--n)) var(--n), 100% var(--n),
+    100% calc(100% - var(--n)), calc(100% - var(--n)) calc(100% - var(--n)), calc(100% - var(--n)) 100%,
+    var(--n) 100%, var(--n) calc(100% - var(--n)), 0 calc(100% - var(--n)));
+}
+.notch{
+  position:relative;
+  isolation:isolate;
+  background:var(--edge,var(--line));
+}
+.notch::before{
+  content:"";
+  position:absolute;
+  inset:var(--bw,2px);
+  background:var(--fill,var(--surface));
+  z-index:-1;
 }
 
-.ambient{
-    position:fixed;
-    inset:0;
-    z-index:-1;
-    overflow:hidden;
-    pointer-events:none;
+/* ============ BUTTONS ============ */
+.glow{
+  display:inline-block;
+  filter:drop-shadow(0 0 12px rgba(255,90,31,.5));
+  animation:glowPulse 2.8s ease-in-out infinite;
 }
-
-.ember{
-    position:absolute;
-    border-radius:50%;
-    filter:blur(90px);
-    opacity:.22;
+@keyframes glowPulse{
+  0%,100%{filter:drop-shadow(0 0 9px rgba(255,90,31,.42))}
+  50%{filter:drop-shadow(0 0 18px rgba(255,90,31,.7))}
 }
-
-.ember-1{
-    width:480px;
-    height:480px;
-    top:-120px;
-    left:-100px;
-    background:var(--accent);
-    animation:drift1 22s ease-in-out infinite;
-}
-
-.ember-2{
-    width:420px;
-    height:420px;
-    top:40%;
-    right:-140px;
-    background:var(--accent-soft);
-    animation:drift2 26s ease-in-out infinite;
-}
-
-.ember-3{
-    width:520px;
-    height:520px;
-    bottom:-200px;
-    left:30%;
-    background:var(--accent-dark);
-    animation:drift3 30s ease-in-out infinite;
-}
-
-@keyframes drift1{
-    0%,100%{ transform:translate(0,0) scale(1); }
-    50%{ transform:translate(80px,60px) scale(1.15); }
-}
-
-@keyframes drift2{
-    0%,100%{ transform:translate(0,0) scale(1); }
-    50%{ transform:translate(-70px,50px) scale(1.1); }
-}
-
-@keyframes drift3{
-    0%,100%{ transform:translate(0,0) scale(1); }
-    50%{ transform:translate(60px,-40px) scale(1.2); }
-}
-
-.container{
-width:90%;
-max-width:1200px;
-margin:auto;
-}
-
-section{
-padding:90px 0;
-}
-
-/* HEADER */
-
-header{
-position:fixed;
-top:0;
-width:100%;
-background:rgba(13,12,16,.75);
-backdrop-filter:blur(10px);
-border-bottom:1px solid var(--border);
-z-index:1000;
-}
-
-.nav{
-display:flex;
-justify-content:space-between;
-align-items:center;
-height:80px;
-}
-
-.logo{
-font-size:28px;
-font-weight:800;
-color:var(--accent);
-text-shadow:var(--glow-text);
-animation:flicker 6s ease-in-out infinite;
-}
-
-@keyframes flicker{
-    0%,100%{ opacity:1; }
-    92%{ opacity:1; }
-    93%{ opacity:.6; }
-    94%{ opacity:1; }
-    96%{ opacity:.75; }
-    97%{ opacity:1; }
-}
-
-@keyframes spin{
-    to{ transform:rotate(360deg); }
-}
-
-.case-tabs{
-    position:relative;
-    padding:36px;
-    border-radius:32px;
-    background:var(--surface);
-    isolation:isolate;
-    overflow:hidden;
-}
-
-.case-tabs::before{
-    content:"";
-    position:absolute;
-    inset:-60%;
-    z-index:-1;
-    background:conic-gradient(from 0deg, var(--accent), var(--accent-soft), var(--accent-dark), var(--accent-soft), var(--accent));
-    animation:spin 8s linear infinite;
-}
-
-.case-tabs::after{
-    content:"";
-    position:absolute;
-    inset:3px;
-    z-index:-1;
-    border-radius:29px;
-    background:var(--surface);
-}
-
-.menu{
-display:flex;
-gap:30px;
-}
-
-.menu a{
-text-decoration:none;
-color:var(--text);
-font-weight:600;
-}
-
 .btn{
-    display:inline-flex;
-    align-items:center;
-    justify-content:center;
-
-    height:64px;
-    padding:0 32px;
-
-    background:var(--accent);
-    color:var(--ink);
-    border-radius:16px;
-    text-decoration:none;
-
-    font-size:18px;
-    font-weight:700;
-    line-height:1;
-
-    transition:.3s;
-    animation:neonPulse 2.4s ease-in-out infinite;
-}
-
-.btn:hover{
-    background:var(--accent-dark);
-    box-shadow:var(--glow-md);
-}
-
-/* HERO */
-
-/* HERO */
-
-.hero{
-    padding-top:160px;
-}
-
-.hero-content{
-    display:grid;
-    grid-template-columns:45% 55%;
-    gap:50px;
-    align-items:center;
-}
-
-.hero-text{
-    z-index:2;
-}
-
-.hero-image{
-    display:flex;
-    justify-content:center;
-    align-items:center;
-}
-
-.shorts-container{
-    display:flex;
-    gap:20px;
-    align-items:center;
-    justify-content:center;
-}
-
-.shorts-container img{
-    width:180px;
-    height:360px;
-    object-fit:cover;
-    border-radius:20px;
-    box-shadow:0 15px 35px rgba(228,96,42,.16);
-    transition:.3s;
-}
-
-.shorts-container img:hover{
-    transform:translateY(-10px);
-}
-
-.hero h1{
-    font-size:64px;
-    line-height:1.1;
-    margin-bottom:20px;
-}
-
-.hero h1 span{
-    color:var(--accent);
-    text-shadow:var(--glow-text);
-}
-
-.hero p{
-    font-size:20px;
-    color:var(--text-muted);
-    margin-bottom:35px;
-}
-
-.hero-buttons{
-    display:flex;
-    gap:15px;
-    flex-wrap:wrap;
-}
-
-@media(max-width:900px){
-
-    .hero-content{
-        grid-template-columns:1fr;
-        text-align:center;
-    }
-
-    .hero h1{
-        font-size:42px;
-    }
-
-    .hero-image{
-        justify-content:center;
-    }
-
-    .shorts-container{
-        transform:none;
-        justify-content:center;
-        flex-wrap:wrap;
-    }
-
-    .shorts-container img{
-        width:120px;
-        height:240px;
-    }
-}
-
-/* CARDS */
-
-.title{
-text-align:center;
-font-size:42px;
-margin-bottom:50px;
-}
-
-.cards{
-display:grid;
-grid-template-columns:repeat(3,1fr);
-gap:25px;
-}
-
-.card{
-    background:rgba(255,255,255,.06);
-    backdrop-filter:blur(15px);
-    border:1px solid rgba(255,255,255,.12);
-    border-radius:24px;
-    padding:35px;
-    color:var(--text);
-    transition:.3s;
-    display:flex;
-    flex-direction:column;
-}
-
-
-.card:hover{
-    transform:translateY(-12px);
-    background:rgba(255,255,255,.1);
-    box-shadow:0 0 22px rgba(244,94,13,.22), 0 20px 40px rgba(0,0,0,.4);
-}
-
-.card h3{
-    color:var(--text);
-    font-size:28px;
-    margin-bottom:20px;
-}
-
-.card ul{
-    list-style:none;
-    padding:0;
-}
-
-.card li{
-    margin:14px 0;
-    padding-left:30px;
-    position:relative;
-    color:rgba(255,255,255,.9);
-}
-
-.card li::before{
-    content:"✔";
-    position:absolute;
-    left:0;
-    color:var(--accent-soft);
-    font-weight:700;
-}
-
-/* STATS */
-
-.stats{
-display:grid;
-grid-template-columns:repeat(3,1fr);
-gap:25px;
-}
-
-.reveal{
-    opacity:0;
-    transform:translateY(28px);
-    transition:opacity .7s ease, transform .7s ease;
-}
-
-.reveal.in-view{
-    opacity:1;
-    transform:translateY(0);
-}
-
-.stat{
-background:var(--surface);
-padding:35px;
-text-align:center;
-border-radius:24px;
-box-shadow:0 10px 25px rgba(228,96,42,.08);
-}
-
-.stat-number{
-font-size:42px;
-font-weight:800;
-color:var(--accent);
-text-shadow:var(--glow-text);
-margin-bottom:10px;
-}
-
-/* CASE */
-
-.cases-subtitle{
-    text-align:center;
-    color:var(--text-muted);
-    font-size:18px;
-    margin-top:-15px;
-    margin-bottom:40px;
-}
-
-.cases-grid{
-    display:grid;
-    grid-template-columns:repeat(auto-fit, minmax(420px, 1fr));
-    gap:40px;
-    align-items:start;
-}
-
-.case-study{
-    position:relative;
-    max-width:640px;
-    margin:0 auto;
-    background:var(--surface);
-    border:1px solid var(--border);
-    border-radius:28px;
-    padding:44px;
-    box-shadow:0 10px 25px rgba(228,96,42,.08);
-}
-
-.case-ribbon{
-    position:absolute;
-    top:-16px;
-    left:32px;
-    background:var(--accent);
-    color:var(--ink);
-    font-weight:800;
-    font-size:14px;
-    padding:8px 18px;
-    border-radius:50px;
-    box-shadow:var(--glow-sm);
-}
-
-.case-stat-card{
-    background:var(--surface-2);
-    border:1px solid var(--border);
-    border-radius:20px;
-    padding:24px;
-    margin-bottom:26px;
-}
-
-.case-stat-header{
-    display:flex;
-    align-items:center;
-    gap:12px;
-    flex-wrap:wrap;
-    margin-bottom:18px;
-}
-
-.case-tag{
-    background:rgba(244,94,13,.14);
-    color:var(--accent);
-    font-weight:800;
-    font-size:13px;
-    padding:6px 14px;
-    border-radius:8px;
-}
-
-.case-overdone{
-    color:var(--accent-soft);
-    font-weight:700;
-    font-size:14px;
-}
-
-.progress-bar{
-    display:flex;
-    gap:6px;
-    margin-bottom:14px;
-}
-
-.progress-bar span{
-    flex:1;
-    height:10px;
-    border-radius:6px;
-    background:var(--accent);
-    box-shadow:0 0 6px rgba(244,94,13,.35);
-}
-
-.case-stat-footer{
-    display:flex;
-    justify-content:space-between;
-    align-items:center;
-    color:var(--text-muted);
-    font-size:15px;
-}
-
-.case-percent{
-    color:#5FD98A;
-    font-weight:800;
-}
-
-.case-chat{
-    display:flex;
-    flex-direction:column;
-    gap:10px;
-    margin-bottom:24px;
-}
-
-.chat-msg{
-    max-width:85%;
-    padding:14px 18px;
-    border-radius:16px;
-    font-size:15px;
-    line-height:1.5;
-}
-
-.chat-msg-client{
-    align-self:flex-start;
-    background:var(--surface-2);
-    color:var(--text);
-    border-bottom-left-radius:4px;
-}
-
-.chat-msg-us{
-    align-self:flex-end;
-    background:var(--accent);
-    color:var(--ink);
-    border-bottom-right-radius:4px;
-    font-weight:600;
-}
-
-.case-images{
-    display:flex;
-    flex-direction:column;
-    gap:18px;
-    margin-bottom:24px;
-}
-
-.case-img{
-    width:100%;
-    border-radius:16px;
-    border:1px solid var(--border);
-    box-shadow:0 10px 25px rgba(228,96,42,.08);
-    cursor:pointer;
-    transition:.3s;
-}
-
-.case-img:hover{
-    transform:scale(1.01);
-    box-shadow:var(--glow-sm);
-}
-
-.case-comment{
-    color:var(--text-muted);
-    font-size:16px;
-    line-height:1.7;
-    text-align:center;
-    margin:0;
-}
-
-.case-stats-list{
-    list-style:none;
-    display:flex;
-    flex-direction:column;
-    gap:12px;
-    margin:0;
-    padding:0;
-}
-
-.case-stats-list li{
-    position:relative;
-    padding-left:30px;
-    color:var(--text);
-    font-size:16px;
-    font-weight:600;
-}
-
-.case-stats-list li::before{
-    content:"✓";
-    position:absolute;
-    left:0;
-    top:0;
-    color:var(--accent);
-    font-weight:800;
-}
-
-.case-box{
-background:var(--surface);
-padding:60px;
-border-radius:30px;
-text-align:center;
-box-shadow:0 10px 25px rgba(228,96,42,.08);
-}
-
-.case-box h3{
-font-size:32px;
-margin-bottom:20px;
-color:var(--accent);
-}
-
-.case-box p{
-font-size:18px;
-color:var(--text-muted);
-line-height:1.8;
-}
-
-/* WHY */
-
-.why{
-display:grid;
-grid-template-columns:repeat(3,1fr);
-gap:25px;
-}
-
-.why-card{
-background:var(--surface);
-padding:30px;
-border-radius:24px;
-text-align:center;
-box-shadow:0 10px 25px rgba(228,96,42,.08);
-}
-
-.why-card h3{
-margin-bottom:10px;
-}
-
-/* PRICING */
-
-.pricing{
-    display:grid;
-    grid-template-columns:repeat(3,1fr);
-    gap:25px;
-    align-items:stretch;
-}
-
-.price-card{
-    background:var(--surface);
-    padding:40px;
-    border-radius:24px;
-    box-shadow:0 10px 25px rgba(228,96,42,.08);
-    border:2px solid transparent;
-
-    display:flex;
-    flex-direction:column;
-
-    height:100%;
-}
-
-.card-top{
-    text-align:center;
-}
-
-.card-mid{
-    flex:1;
-    display:flex;
-    flex-direction:column;
-    justify-content:center;
-}
-
-.card-bottom{
-    margin-top:auto;
-    text-align:center;
-}
-.price-card ul{
-    flex:1;
-    list-style:none;
-    line-height:2;
-    margin:25px 0;
-    padding:0;
-}
-
-.price-card.featured{
-border:2px solid var(--accent);
-box-shadow:var(--glow-md);
-}
-
-.price-card h3{
-font-size:28px;
-margin-bottom:20px;
-}
-
-.price{
-font-size:42px;
-font-weight:800;
-color:var(--accent);
-text-shadow:var(--glow-text);
-margin-top:25px;
-}
-
-.price-card ul{
-list-style:none;
-line-height:2;
-}
-.pricing-subtitle{
-    text-align:center;
-    color:var(--text-muted);
-    font-size:18px;
-    max-width:700px;
-    margin:0 auto 50px;
-}
-/* CONTACT */
-
-.contact{
-text-align:center;
-background:var(--surface);
-border-radius:30px;
-padding:70px;
-box-shadow:0 10px 25px rgba(228,96,42,.08);
-}
-
-.contact h2{
-margin-bottom:20px;
-font-size:42px;
-}
-
-.contact p{
-margin-bottom:30px;
-color:var(--text-muted);
-}
-
-/* FOOTER */
-
-footer{
-padding:40px;
-text-align:center;
-color:var(--text-muted);
-}
-
-/* MOBILE */
-
-@media(max-width:900px){
-
-.hero-content,
-.cards,
-.stats,
-.why,
-.pricing{
-grid-template-columns:1fr;
-}
-
-.hero h1{
-font-size:42px;
-}
-
-.nav > a.btn{
-display:none;
-}
-
-.menu{
-position:fixed;
-top:80px;
-left:0;
-right:0;
-background:var(--surface);
-flex-direction:column;
-align-items:center;
-gap:0;
-padding:10px 0;
-border-bottom:1px solid var(--border);
-display:none;
-}
-
-.menu.open{
-display:flex;
-}
-
+  --n:6px;
+  --edge:var(--gold);
+  --fill:var(--lava);
+  display:inline-flex;align-items:center;justify-content:center;
+  height:60px;padding:0 32px;
+  color:var(--ink);
+  font-weight:800;font-size:17px;line-height:1;
+  text-decoration:none;
+  cursor:pointer;
+  transition:transform .2s;
+}
+.btn:hover{--fill:var(--gold);transform:translateY(-2px)}
+.btn:active{transform:translateY(1px)}
+.btn-ghost{
+  --n:6px;
+  --edge:var(--lava);
+  --fill:#0d0909;
+  display:inline-flex;align-items:center;justify-content:center;
+  height:60px;padding:0 30px;
+  color:var(--lava);
+  font-weight:800;font-size:17px;
+  text-decoration:none;
+  transition:transform .2s,color .2s;
+}
+.btn-ghost:hover{--fill:var(--lava);color:var(--ink);transform:translateY(-2px)}
+
+/* ============ HEADER ============ */
+header{
+  position:fixed;top:0;left:0;right:0;z-index:1000;
+  background:rgba(8,6,7,.55);
+  backdrop-filter:blur(14px);
+  -webkit-backdrop-filter:blur(14px);
+  border-bottom:1px solid rgba(255,90,31,.14);
+  transition:background .3s,border-color .3s;
+}
+header.scrolled{background:rgba(8,6,7,.88);border-bottom-color:rgba(255,90,31,.3)}
+.nav{display:flex;align-items:center;justify-content:space-between;height:76px;gap:24px}
+.logo{
+  display:flex;align-items:center;gap:12px;
+  text-decoration:none;
+  font-size:24px;font-weight:800;letter-spacing:.01em;
+}
+.logo .blk{width:30px;height:30px}
+.logo span{color:var(--lava)}
+.menu{display:flex;gap:6px}
 .menu a{
-padding:14px 0;
-width:100%;
-text-align:center;
+  position:relative;
+  padding:10px 16px;
+  color:var(--text);text-decoration:none;font-weight:600;
 }
+.menu a::after{
+  content:"";position:absolute;left:16px;right:16px;bottom:4px;height:3px;
+  background:var(--lava);
+  transform:scaleX(0);transform-origin:left;
+  transition:transform .25s steps(4);
+}
+.menu a:hover::after{transform:scaleX(1)}
+.burger{display:none}
 
-.burger{
-display:flex;
-flex-direction:column;
-justify-content:center;
-gap:5px;
-width:32px;
-height:32px;
-background:none;
-border:none;
-cursor:pointer;
-}
+.blk{display:block;image-rendering:pixelated}
 
-.burger span{
-display:block;
-height:3px;
-width:100%;
-background:var(--accent);
-border-radius:2px;
+/* ============ HERO ============ */
+.hero{padding:150px 0 70px}
+.hero-grid{
+  display:grid;
+  grid-template-columns:minmax(0,1.02fr) minmax(0,1fr);
+  gap:56px;
+  align-items:center;
 }
+.badge{
+  --n:4px;
+  --edge:rgba(255,90,31,.55);
+  --fill:#1a0f0b;
+  display:inline-block;
+  padding:9px 16px;
+  color:var(--gold);
+  font-size:14px;font-weight:700;
+  margin-bottom:26px;
+  animation:rise .7s .05s both cubic-bezier(.2,.8,.2,1);
+}
+.hero h1{
+  font-weight:800;
+  letter-spacing:-.025em;
+  line-height:1.02;
+  margin-bottom:26px;
+}
+.hero h1 .ln{display:block;overflow:hidden;padding-bottom:.06em}
+.hero h1 .ln > span{display:block;animation:lineUp .85s both cubic-bezier(.2,.8,.2,1)}
+.hero h1 .l1{font-size:clamp(34px,4.4vw,58px)}
+.hero h1 .l2{font-size:clamp(44px,6.4vw,86px);line-height:.98}
+.hero h1 .l2 > span{
+  animation-delay:.12s;
+  background:linear-gradient(180deg,#FFD27A 0%,#FF8A2B 45%,#FF5A1F 100%);
+  -webkit-background-clip:text;background-clip:text;
+  -webkit-text-fill-color:transparent;color:transparent;
+}
+.hero h1 .l3{font-size:clamp(20px,2.3vw,30px);font-weight:700;color:var(--muted);letter-spacing:-.01em;margin-top:6px}
+.hero h1 .l1 > span{animation-delay:0s}
+.hero h1 .l3 > span{animation-delay:.24s}
+@keyframes lineUp{from{transform:translateY(105%)}to{transform:none}}
+@keyframes rise{from{opacity:0;transform:translateY(14px)}to{opacity:1;transform:none}}
 
+.hero-lead{
+  font-size:20px;color:var(--muted);max-width:30em;margin-bottom:36px;
+  animation:rise .8s .4s both cubic-bezier(.2,.8,.2,1);
 }
+.hero-buttons{
+  display:flex;gap:12px;flex-wrap:wrap;
+  animation:rise .8s .52s both cubic-bezier(.2,.8,.2,1);
+}
+.hero-buttons .btn,.hero-buttons .btn-ghost{padding:0 24px;font-size:16px}
 
-@media(min-width:901px){
-.burger{
-display:none;
+/* ---- showcase ---- */
+.stage{
+  position:relative;
+  animation:rise 1s .3s both cubic-bezier(.2,.8,.2,1);
 }
+.showcase{
+  --n:12px;
+  --bw:3px;
+  --edge:linear-gradient(135deg,#FFC15A 0%,#FF5A1F 45%,#7a2607 100%);
+  --fill:#120d10;
+  padding:28px 28px 64px;
 }
-.video-img{
-    width:180px;
-    height:360px;
-    object-fit:cover;
-    border-radius:20px;
-    box-shadow:0 15px 35px rgba(228,96,42,.16);
-    cursor:pointer;
-    transition:.3s;
-}
-
-.video-img:hover{
-    transform:scale(1.05);
-}
-
-.modal{
-    display:none;
-    position:fixed;
-    inset:0;
-    background:rgba(6,5,7,.92);
-    z-index:9999;
-    justify-content:center;
-    align-items:center;
-}
-
-.modal img{
-    max-width:90%;
-    max-height:90%;
-    border-radius:20px;
-}
-
-.close{
-    position:absolute;
-    top:20px;
-    right:35px;
-    color:var(--text);
-    font-size:50px;
-    cursor:pointer;
-}
-
-.short-card{
-    display:flex;
-    flex-direction:column;
-    align-items:center;
-    gap:14px;
-}
-
-.video-link{
-    display:inline-flex;
-    align-items:center;
-    justify-content:center;
-    padding:12px 22px;
-    background:var(--accent);
-    color:var(--ink);
-    text-decoration:none;
-    border-radius:12px;
-    font-weight:700;
-    font-size:15px;
-    transition:.3s;
-    box-shadow:var(--glow-sm);
-}
-
-.video-link:hover{
-    background:var(--accent-dark);
-    color:var(--text);
-    transform:translateY(-2px);
-    box-shadow:var(--glow-md);
-}
-
 .tabs{
-    display:flex;
-    justify-content:space-between;
-    gap:12px;
-
-    width:100%;
-    max-width:900px;
-    margin:0 auto 50px;
-
-    flex-wrap:nowrap; /* запрещаем перенос */
+  display:grid;grid-template-columns:repeat(3,1fr);gap:8px;
+  margin-bottom:26px;
 }
-
 .tab-btn{
-    flex:1; /* ВСЕ кнопки одинаковой ширины */
-
-    padding:14px 10px;
-    border:none;
-    border-radius:14px;
-
-    background:var(--surface);
-    color:var(--accent);
-
-    font-size:16px;
-    font-weight:700;
-
-    cursor:pointer;
-    text-align:center;
-
-    white-space:nowrap; /* не переносит текст */
-
-    min-width:0; /* важно, чтобы flex не ломался */
+  font-family:inherit;
+  padding:13px 8px;
+  border:0;
+  background:#1d1619;
+  color:var(--muted);
+  font-size:14px;font-weight:700;
+  cursor:pointer;
+  clip-path:polygon(0 4px,4px 4px,4px 0,calc(100% - 4px) 0,calc(100% - 4px) 4px,100% 4px,100% calc(100% - 4px),calc(100% - 4px) calc(100% - 4px),calc(100% - 4px) 100%,4px 100%,4px calc(100% - 4px),0 calc(100% - 4px));
+  transition:background .2s,color .2s;
 }
-@media(max-width:900px){
-    .tabs{
-        flex-direction:column;
-    }
+.tab-btn:hover{color:var(--text);background:#2a1f22}
+.tab-btn[aria-selected="true"]{background:var(--lava);color:var(--ink)}
+
+.panels{display:grid}
+.panel{
+  grid-area:1/1;
+  opacity:0;visibility:hidden;
+  transform:translateY(10px);
+  transition:opacity .35s,transform .35s,visibility 0s .35s;
 }
+.panel.active{opacity:1;visibility:visible;transform:none;transition:opacity .35s,transform .35s}
 
-
-.tab-btn.active{
-    background:var(--accent);
-    color:var(--ink);
-    box-shadow:var(--glow-md);
+.phones{
+  display:flex;justify-content:center;align-items:flex-start;gap:14px;
+  perspective:1000px;
+  padding-top:14px;
 }
-
-.tab-content{
-    display:none;
+.short-card{
+  display:flex;flex-direction:column;align-items:center;gap:14px;
+  flex:1;min-width:0;max-width:170px;
+  transition:transform .35s cubic-bezier(.2,.8,.2,1);
+  transform:translate3d(var(--tx,0),var(--ty,0),0) rotate(var(--rot,0deg));
 }
-
-.tab-content.active{
-    display:block;
+.short-card:nth-child(1){--rot:-3deg;--ty:14px}
+.short-card:nth-child(2){--ty:-6px}
+.short-card:nth-child(3){--rot:3deg;--ty:14px}
+.short-card:hover{--ty:-14px}
+.video-img{
+  width:100%;height:auto;
+  aspect-ratio:1170/2532;
+  object-fit:cover;
+  border-radius:20px;
+  border:3px solid #2b2226;
+  box-shadow:0 22px 40px rgba(0,0,0,.55),0 0 0 1px rgba(255,90,31,.25);
+  cursor:zoom-in;
+  background:#000;
 }
-
-.youtube-slider{
-    display:flex;
-    align-items:center;
-    justify-content:center;
-    gap:40px;
-    margin-top:30px;
+.video-link{
+  display:inline-flex;align-items:center;justify-content:center;
+  padding:9px 14px;
+  background:rgba(255,90,31,.14);
+  border:1px solid rgba(255,90,31,.5);
+  color:var(--gold);
+  border-radius:8px;
+  font-size:13px;font-weight:700;text-align:center;line-height:1.2;
+  text-decoration:none;
+  transition:background .2s,color .2s;
 }
+.video-link:hover{background:var(--lava);color:var(--ink)}
 
-.slide{
-    display:none;
-    flex-direction:column;
-    align-items:center;
-}
-
-.slide.active{
-    display:flex;
-}
-
+/* slider (YouTube / Author) */
+.slider{display:flex;align-items:center;gap:14px}
+.slides{flex:1;min-width:0}
+.slide{display:none;flex-direction:column;align-items:center;gap:16px}
+.slide.active{display:flex}
 .slide .video-img{
-    width:500px;
-    height:auto;
-    max-width:100%;
-    border-radius:20px;
-    box-shadow:0 15px 35px rgba(228,96,42,.16);
+  aspect-ratio:auto;
+  width:100%;
+  height:clamp(230px,27vw,340px);
+  object-fit:contain;
+  background:#0a0708;
+  border-radius:14px;
 }
-
 .arrow{
-    width:60px;
-    height:60px;
-    border:none;
-    border-radius:50%;
-    background:var(--accent);
-    color:var(--ink);
-    font-size:32px;
-    cursor:pointer;
-    transition:.3s;
-    box-shadow:var(--glow-sm);
+  flex:none;
+  width:46px;height:46px;
+  border:0;
+  background:var(--lava);
+  color:var(--ink);
+  font-size:20px;font-weight:800;
+  cursor:pointer;
+  clip-path:polygon(0 6px,6px 6px,6px 0,calc(100% - 6px) 0,calc(100% - 6px) 6px,100% 6px,100% calc(100% - 6px),calc(100% - 6px) calc(100% - 6px),calc(100% - 6px) 100%,6px 100%,6px calc(100% - 6px),0 calc(100% - 6px));
+  transition:background .2s,transform .2s;
 }
+.arrow:hover{background:var(--gold);transform:scale(1.06)}
+.dots{display:flex;gap:8px;justify-content:center;margin-top:16px}
+.dots button{
+  width:12px;height:12px;border:0;background:#3a2b27;cursor:pointer;
+  transition:background .2s,transform .2s;
+}
+.dots button.active{background:var(--lava);transform:scale(1.25)}
 
-.arrow:hover{
-    transform:scale(1.08);
-    box-shadow:var(--glow-md);
+/* floating proof card */
+.float{
+  position:absolute;
+  left:-34px;bottom:-30px;
+  z-index:3;
+  filter:drop-shadow(0 16px 26px rgba(0,0,0,.65));
+  animation:rise 1s .9s both cubic-bezier(.2,.8,.2,1);
 }
-.process-grid{
-    display:grid;
-    grid-template-columns:repeat(4,1fr);
-    gap:25px;
+.proof{
+  --n:6px;
+  --edge:var(--grass);
+  --fill:#0e1712;
+  display:flex;align-items:center;gap:14px;
+  padding:14px 20px 14px 14px;
 }
+.proof .blk{width:38px;height:38px;flex:none}
+.proof b{
+  display:block;
+  font-family:var(--font-px);
+  font-size:17px;font-weight:400;
+  color:var(--grass);
+  line-height:1.2;
+}
+.proof small{display:block;font-size:13px;color:var(--muted);font-weight:600;margin-top:4px}
 
-.process-card{
-    background:var(--surface);
-    padding:35px 25px;
-    border-radius:24px;
-    text-align:center;
-    box-shadow:0 10px 25px rgba(228,96,42,.08);
-    transition:.3s;
+/* ============ SECTION HEAD ============ */
+.sec-head{margin-bottom:52px;max-width:780px}
+.sec-head h2{
+  font-size:clamp(30px,4.2vw,48px);
+  font-weight:800;
+  letter-spacing:-.02em;
+  line-height:1.08;
 }
+.sec-head p{margin-top:14px;color:var(--muted);font-size:19px}
 
-.process-card:hover{
-    transform:translateY(-8px);
+/* ============ STATS ============ */
+.stats-band{padding:30px 0 40px}
+.stats{
+  display:grid;grid-template-columns:repeat(3,1fr);
+  --edge:rgba(255,90,31,.35);
+  --fill:rgba(20,16,19,.85);
+  --n:10px;
 }
+.stat{padding:36px 28px;text-align:left;position:relative}
+.stat + .stat{border-left:2px dashed rgba(255,90,31,.28)}
+.stat-number{
+  font-family:var(--font-px);
+  font-size:clamp(24px,3.4vw,42px);
+  color:var(--lava);
+  text-shadow:0 0 22px rgba(255,90,31,.55);
+  margin-bottom:16px;
+  line-height:1.1;
+}
+.stat-label{color:var(--muted);font-weight:600;font-size:16px;max-width:15em}
 
-.process-icon{
-    font-size:42px;
-    margin-bottom:20px;
+/* ============ PROCESS ============ */
+.steps{
+  position:relative;
+  display:grid;grid-template-columns:repeat(4,1fr);gap:28px;
 }
+.track{
+  position:absolute;left:26px;right:calc((100% - 84px)/4 - 26px);top:26px;height:4px;
+  background:#2a1f22;
+}
+.track i{
+  position:absolute;inset:0;
+  background:linear-gradient(90deg,var(--lava),var(--gold));
+  transform:scaleX(0);transform-origin:left;
+  box-shadow:0 0 12px rgba(255,90,31,.7);
+}
+.step{position:relative;padding-top:0}
+.node{
+  --n:6px;
+  --edge:#4a3631;
+  --fill:#181214;
+  width:52px;height:52px;
+  display:flex;align-items:center;justify-content:center;
+  font-family:var(--font-px);font-size:16px;color:var(--muted);
+  margin-bottom:26px;
+  transition:color .3s;
+}
+.step h3{font-size:20px;font-weight:800;margin-bottom:12px;line-height:1.25}
+.step p{color:var(--muted);line-height:1.7;font-size:16px}
+.step .emoji{margin-right:6px}
 
-.process-card h3{
-    margin-bottom:15px;
-}
+.js .steps.play .track i{transform:scaleX(1);transition:transform 2.2s steps(22) .2s}
+.js .steps.play .node{color:var(--ink);--edge:var(--gold);--fill:var(--lava)}
+.js .steps.play .step:nth-child(2) .node{transition-delay:.2s}
+.js .steps.play .step:nth-child(3) .node{transition-delay:.9s}
+.js .steps.play .step:nth-child(4) .node{transition-delay:1.6s}
+.js .steps.play .step:nth-child(5) .node{transition-delay:2.3s}
 
-.process-card p{
-    color:var(--text-muted);
-    line-height:1.7;
+/* ============ SERVICES ============ */
+.cards{display:grid;grid-template-columns:repeat(3,1fr);gap:26px}
+.card{
+  --n:10px;
+  --fill:var(--surface);
+  --mx:50%;--my:50%;
+  padding:38px 34px 34px;
+  display:flex;flex-direction:column;
 }
-
-@media(max-width:900px){
-    .process-grid{
-        grid-template-columns:1fr;
-    }
+.card::after{
+  content:"";position:absolute;inset:0;z-index:-1;
+  background:radial-gradient(260px circle at var(--mx) var(--my),rgba(255,90,31,.2),transparent 70%);
+  opacity:0;transition:opacity .3s;
 }
-.process{
-    padding-bottom: 40px;
-}
-
-#services{
-    padding-top: 40px;
-}
-
-.price-card{
-    background:var(--surface);
-    padding:40px;
-    border-radius:24px;
-    box-shadow:0 10px 25px rgba(228,96,42,.08);
-    text-align:center;
-    border:2px solid transparent;
-    transition:.3s;
-    position:relative;
-}
-
-.price-card:hover{
-    transform:translateY(-10px) scale(1.03);
-    box-shadow:0 14px 28px rgba(228,96,42,.18);
-}
-
-.order-btn{
-    display:flex;
-    align-items:center;
-    justify-content:center;
-
-    width:100%;
-    height:55px;
-
-    margin-top:auto;
-
-    background:var(--accent);
-    color:var(--ink);
-    text-decoration:none;
-    border-radius:14px;
-    font-weight:700;
-    transition:.3s;
-    box-shadow:var(--glow-sm);
-}
-
-.order-btn:hover{
-    background:var(--accent-dark);
-    box-shadow:var(--glow-md);
-}
-
-.popular-badge{
-    position:absolute;
-    top:-14px;
-    left:50%;
-    transform:translateX(-50%);
-    background:var(--accent);
-    color:var(--ink);
-    padding:8px 18px;
-    border-radius:50px;
-    font-size:14px;
-    box-shadow:var(--glow-sm);
-    font-weight:700;
-}
-
-.custom-price{
-    text-align:center;
-    margin-top:35px;
-    color:var(--text-muted);
-    font-size:16px;
-}
-.info-box{
-    max-width:600px;
-    margin:25px auto;
-    padding:15px 20px;
-    background:var(--surface);
-    border:1px solid var(--border);
-    border-radius:16px;
-    text-align:center;
-    color:var(--text-muted);
-    line-height:1.6;
-    font-size:15px;
-    
-}
-#services{
-    padding:100px 0;
-    background:
-        radial-gradient(ellipse 60% 50% at 50% 0%, rgba(244,94,13,.16) 0%, rgba(244,94,13,0) 70%),
-        var(--bg);
-    position:relative;
-    overflow:hidden;
-}
-#services .title{
-    color:var(--accent);
-    text-shadow:var(--glow-text);
-    font-size:48px;
-    margin-bottom:15px;
-}
-
-.services-subtitle{
-    color:var(--text-muted);
-    text-align:center;
-    max-width:700px;
-    margin:0 auto 60px;
-    font-size:20px;
+.card:hover::after{opacity:1}
+.card h3{font-size:26px;font-weight:800;margin-bottom:24px;line-height:1.2}
+.card ul{list-style:none;margin-bottom:32px;flex:1}
+.card li{position:relative;padding-left:26px;margin:14px 0;color:#e6ddd3}
+.card li::before{
+  content:"";position:absolute;left:0;top:.5em;
+  width:10px;height:10px;background:var(--lava);
+  box-shadow:0 0 8px rgba(255,90,31,.6);
 }
 .service-btn{
-    margin-top:auto;
-    display:flex;
-    justify-content:center;
-    align-items:center;
-    width:100%;
-    height:52px;
-    background:var(--ink);
-    color:var(--accent);
-    border-radius:14px;
-    text-decoration:none;
-    font-weight:700;
-    transition:.3s;
+  --n:5px;
+  --edge:rgba(255,90,31,.5);
+  --fill:#0d0909;
+  display:flex;align-items:center;justify-content:center;gap:8px;
+  height:52px;
+  color:var(--lava);
+  font-weight:800;text-decoration:none;
+  transition:color .2s;
+}
+.service-btn:hover{--fill:var(--lava);color:var(--ink)}
+.service-btn i{font-style:normal;transition:transform .2s}
+.service-btn:hover i{transform:translateX(4px)}
+
+/* ============ CASES (server list) ============ */
+.cases-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:30px;align-items:stretch}
+.case{
+  --n:10px;
+  --fill:#0f0b0d;
+  --edge:#4a3631;
+  padding:24px;
+  display:flex;flex-direction:column;gap:22px;
+}
+.case-head{display:flex;align-items:center;gap:16px}
+.case-head .blk{width:52px;height:52px;flex:none}
+.case-head h3{font-size:22px;font-weight:800;line-height:1.2}
+.case-head p{color:var(--muted);font-size:15px;font-weight:600;margin-top:2px}
+.case-head > div{flex:1;min-width:0}
+.case-head > .ping{flex:none}
+.ping{display:flex;align-items:flex-end;gap:3px;height:22px;flex:none}
+.ping i{
+  width:5px;height:calc(var(--k)*4px);
+  background:var(--grass);
+  transform-origin:bottom;
+}
+.js .ping i{transform:scaleY(0)}
+.js .case.on .ping i{transform:scaleY(1);transition:transform .3s steps(3) calc(var(--k)*110ms)}
+.case-num{display:flex;align-items:baseline;gap:16px;flex-wrap:wrap}
+.px-num{
+  font-family:var(--font-px);
+  font-size:clamp(28px,3.6vw,44px);
+  color:var(--grass);
+  text-shadow:0 0 24px rgba(95,217,138,.45);
+  line-height:1.1;
+}
+.case-num span:last-child{color:var(--text);font-weight:700;font-size:17px}
+.shot{
+  position:relative;
+  display:block;
+  height:340px;flex:none;
+  padding:0;
+  background:#0a0708;
+  border:1px solid rgba(255,90,31,.25);
+  border-radius:12px;
+  cursor:zoom-in;
+  overflow:hidden;
+}
+.shot::before{
+  content:"";position:absolute;inset:-24px;
+  background:var(--shot) center/cover no-repeat;
+  filter:blur(20px) brightness(.4) saturate(1.2);
+}
+.shot img{position:absolute;inset:0;width:100%;height:100%;object-fit:contain;transition:transform .4s}
+.shot:hover img{transform:scale(1.03)}
+.shot::after{
+  content:"Увеличить";
+  position:absolute;right:10px;bottom:10px;
+  padding:6px 10px;border-radius:6px;
+  background:rgba(8,6,7,.8);color:var(--gold);
+  font-size:12px;font-weight:700;
+  opacity:0;transition:opacity .2s;
+}
+.shot:hover::after,.shot:focus-visible::after{opacity:1}
+.case-days{
+  display:inline-flex;align-self:flex-start;
+  padding:8px 14px;
+  background:rgba(255,193,90,.1);
+  border:1px solid rgba(255,193,90,.35);
+  border-radius:8px;
+  color:var(--gold);font-weight:800;font-size:15px;
 }
 
-.service-btn:hover{
-    transform:translateY(-3px);
-    background:var(--surface-2);
+/* ============ WHY ============ */
+.why{display:grid;grid-template-columns:minmax(0,.8fr) minmax(0,1.2fr);gap:64px;align-items:start}
+.why .sec-head{margin-bottom:0;position:sticky;top:110px}
+.why-list{border-top:2px dashed rgba(255,90,31,.28)}
+.why-item{
+  position:relative;
+  padding:34px 0 34px 40px;
+  border-bottom:2px dashed rgba(255,90,31,.28);
 }
-.price-desc{
-    min-height:0;
-    flex-grow:1;
+.why-item::before{
+  content:"";position:absolute;left:0;top:44px;
+  width:16px;height:16px;background:var(--lava);
+  box-shadow:0 0 12px rgba(255,90,31,.7);
+  transition:transform .25s steps(3);
 }
+.why-item:hover::before{transform:translateX(6px)}
+.why-item h3{font-size:24px;font-weight:800;margin-bottom:8px}
+.why-item p{color:var(--muted);font-size:18px;max-width:30em}
 
-.price-list{
-    display:flex;
-    flex-direction:column;
-    gap:12px;
-    min-height:120px;
-}
-
-.price-list div{
-    display:flex;
-    justify-content:space-between;
-    padding:10px 0;
-    border-bottom:1px solid var(--border);
-}
+/* ============ PRICING ============ */
+.pricing{display:grid;grid-template-columns:repeat(3,1fr);gap:26px;align-items:stretch}
 .price-card{
-    display:flex;
-    flex-direction:column;
-    height:100%;
+  --n:10px;
+  --fill:var(--surface);
+  padding:50px 30px 32px;
+  display:flex;flex-direction:column;
+  text-align:center;
 }
-
-.price-desc{
-    text-align:center;
-    color:var(--text-muted);
-    line-height:1.6;
-    margin-bottom:18px;
-    min-height:60px;
+.price-card h3{
+  font-size:24px;font-weight:800;margin-bottom:14px;line-height:1.2;
+  min-height:2.4em;display:flex;align-items:center;justify-content:center;
 }
-
-.price-list{
-    display:flex;
-    flex-direction:column;
-    gap:10px;
-    margin-bottom:18px;
+.price-card.featured{
+  --bw:3px;
+  --edge:linear-gradient(160deg,#FFC15A,#FF5A1F 50%,#8a2b06);
+  --fill:#1a1012;
 }
-
-.price-block{
-    margin-top:auto;
-    text-align:center;
+.popular-badge{
+  position:absolute;top:14px;left:50%;transform:translateX(-50%);
+  white-space:nowrap;
+  padding:6px 14px;
+  background:var(--lava);color:var(--ink);
+  font-weight:800;font-size:13px;
+  clip-path:polygon(0 3px,3px 3px,3px 0,calc(100% - 3px) 0,calc(100% - 3px) 3px,100% 3px,100% calc(100% - 3px),calc(100% - 3px) calc(100% - 3px),calc(100% - 3px) 100%,3px 100%,3px calc(100% - 3px),0 calc(100% - 3px));
 }
-.card-top{
-    text-align:center;
+.price-desc{color:var(--muted);line-height:1.6;margin-bottom:22px;min-height:4.8em}
+.price-list{display:flex;flex-direction:column;margin-bottom:26px;flex:1;justify-content:center}
+.price-list div{
+  display:flex;justify-content:space-between;align-items:baseline;gap:12px;
+  padding:13px 0;
+  border-bottom:2px dashed rgba(255,90,31,.22);
+  font-weight:600;
 }
-
-.card-mid{
-    flex:1;
-    display:flex;
-    flex-direction:column;
-    justify-content:center;
-}
-
-.card-bottom{
-    text-align:center;
-    margin-top:auto;
-}
-.price-stack{
-    display:flex;
-    flex-direction:column;
-    height:100%;
-}
-
-.price-top{
-    text-align:center;
-}
-
-.price-middle{
-    flex:1;
-    display:flex;
-    flex-direction:column;
-    justify-content:center;
-}
-
+.price-list div:last-child{border-bottom:0}
+.price-list strong{color:var(--gold);font-size:20px;font-weight:800;white-space:nowrap}
+.price-mid{flex:1;display:flex;flex-direction:column;justify-content:center;margin-bottom:26px}
 .price-value{
-    font-size:42px;
-    font-weight:800;
-    color:var(--accent);
-    text-shadow:var(--glow-text);
-    margin-top:10px;
+  font-size:46px;font-weight:800;color:var(--gold);line-height:1;
+  text-shadow:0 0 22px rgba(255,90,31,.4);
+}
+.price-subtext{margin-top:10px;color:var(--muted);font-size:16px}
+.order-btn{
+  --n:6px;
+  --edge:var(--gold);
+  --fill:var(--lava);
+  display:flex;align-items:center;justify-content:center;
+  height:56px;margin-top:auto;
+  color:var(--ink);font-weight:800;font-size:17px;text-decoration:none;
+  transition:transform .2s;
+}
+.order-btn:hover{--fill:var(--gold);transform:translateY(-2px)}
+
+/* ============ CONTACT ============ */
+.contact{
+  --n:14px;
+  --bw:3px;
+  --edge:linear-gradient(135deg,#FFC15A,#FF5A1F 50%,#7a2607);
+  --fill:#130c0d;
+  text-align:center;
+  padding:84px 40px 90px;
+  overflow:hidden;
+}
+.contact::after{
+  content:"";position:absolute;left:0;right:0;bottom:0;height:70%;z-index:-1;
+  background:radial-gradient(ellipse 70% 100% at 50% 130%,rgba(255,90,31,.45),transparent 70%);
+}
+.contact h2{font-size:clamp(32px,5vw,58px);font-weight:800;letter-spacing:-.025em;line-height:1.05;margin-bottom:18px}
+.cta-text{color:var(--muted);font-size:20px;max-width:28em;margin:0 auto 26px}
+.info-box{
+  max-width:620px;margin:0 auto 34px;
+  padding:16px 22px;
+  background:rgba(255,90,31,.08);
+  border:1px dashed rgba(255,90,31,.5);
+  border-radius:10px;
+  color:#e6ddd3;line-height:1.6;font-size:16px;
+}
+.info-box strong{color:var(--gold)}
+
+/* ============ FOOTER ============ */
+footer{padding:44px 0 56px;border-top:1px solid rgba(255,90,31,.14)}
+.foot{display:flex;justify-content:space-between;align-items:center;gap:20px;flex-wrap:wrap;color:var(--muted)}
+.foot .logo{font-size:20px;color:var(--text)}
+.foot .logo .blk{width:24px;height:24px}
+.foot-links{display:flex;gap:22px;flex-wrap:wrap}
+.foot-links a{color:var(--muted);text-decoration:none;font-weight:600;transition:color .2s}
+.foot-links a:hover{color:var(--gold)}
+
+/* ============ MODAL ============ */
+.modal{
+  display:none;position:fixed;inset:0;z-index:9999;
+  background:rgba(6,5,7,.94);
+  justify-content:center;align-items:center;
+}
+.modal.open{display:flex}
+.modal img{max-width:92%;max-height:90%;border-radius:14px;box-shadow:0 0 60px rgba(255,90,31,.25)}
+.close{
+  position:absolute;top:14px;right:22px;
+  width:52px;height:52px;border:0;background:transparent;
+  color:var(--text);font-size:44px;line-height:1;cursor:pointer;
+}
+.close:hover{color:var(--lava)}
+
+/* ============ RESPONSIVE ============ */
+@media(max-width:1000px){
+  .hero{padding-top:120px}
+  .hero-grid{grid-template-columns:1fr;gap:64px}
+  .hero-copy{text-align:left}
+  .float{left:12px;bottom:-30px}
+  .steps{grid-template-columns:1fr;gap:34px;padding-left:0}
+  .track{left:24px;right:auto;top:26px;bottom:26px;height:auto;width:4px}
+  .track i{transform:scaleY(0);transform-origin:top}
+  .js .steps.play .track i{transform:scaleY(1)}
+  .step{display:grid;grid-template-columns:52px 1fr;column-gap:22px}
+  .node{margin-bottom:0;grid-row:1 / span 2}
+  .why{grid-template-columns:1fr;gap:34px}
+  .why .sec-head{position:static}
+}
+@media(max-width:900px){
+  .cards,.pricing,.cases-grid{grid-template-columns:1fr}
+  .nav > .glow{display:none}
+  .burger{
+    display:flex;flex-direction:column;justify-content:center;gap:5px;
+    width:44px;height:44px;padding:10px;background:none;border:0;cursor:pointer;
+  }
+  .burger span{display:block;height:3px;width:100%;background:var(--lava)}
+  .menu{
+    position:fixed;top:76px;left:0;right:0;
+    display:none;flex-direction:column;align-items:stretch;gap:0;
+    background:rgba(8,6,7,.97);
+    padding:10px 5%;
+    border-bottom:1px solid rgba(255,90,31,.3);
+  }
+  .menu.open{display:flex}
+  .menu a{padding:16px 4px;font-size:18px}
+  .menu a::after{display:none}
+  section{padding:70px 0}
+}
+@media(max-width:640px){
+  .stats{grid-template-columns:1fr}
+  .stat + .stat{border-left:0;border-top:2px dashed rgba(255,90,31,.28)}
+  .stat{padding:26px 24px}
+  .showcase{padding:18px 16px 26px}
+  .tabs{gap:6px}
+  .tab-btn{font-size:13px;padding:12px 4px}
+  .phones{gap:8px}
+  .video-link{font-size:11px;padding:8px 6px}
+  .slider{gap:8px}
+  .arrow{width:38px;height:38px;font-size:16px}
+  .hero-buttons .glow,.hero-buttons .btn,.hero-buttons .btn-ghost{width:100%}
+  .hero-buttons .btn{width:100%}
+  .float{position:relative;left:auto;bottom:auto;margin:-14px 0 0 8px;display:inline-block}
+  .contact{padding:60px 22px 64px}
+  .shot{height:280px}
+  .foot{flex-direction:column;align-items:flex-start}
 }
 
-.price-subtext{
-    margin-top:8px;
-    font-size:16px;
-    color:var(--text-muted);
-    min-height:24px; /* ВАЖНО: фиксирует высоту */
+@media(prefers-reduced-motion:reduce){
+  *,*::before,*::after{animation:none!important;transition:none!important;scroll-behavior:auto!important}
+  .hero h1 .ln > span{transform:none}
+  .js .ping i{transform:scaleY(1)}
+  .js .track i{transform:scaleX(1)}
 }
-
-.price-action{
-    margin-top:auto;
-}
-#author .video-img{
-    width:100%;
-    max-width:600px;
-    height:auto;
-    border-radius:20px;
-}
-
 </style>
 </head>
 <body>
 
-<div class="ambient" aria-hidden="true">
-    <span class="ember ember-1"></span>
-    <span class="ember ember-2"></span>
-    <span class="ember ember-3"></span>
-</div>
+<!-- pixel block icon -->
+<svg width="0" height="0" style="position:absolute" aria-hidden="true" focusable="false">
+  <symbol id="blk" viewBox="0 0 16 16" shape-rendering="crispEdges">
+    <rect width="16" height="16" fill="#C93F0B"/>
+    <rect width="16" height="5" fill="#FFC15A"/>
+    <rect x="0" y="5" width="3" height="2" fill="#FFC15A"/>
+    <rect x="6" y="5" width="4" height="1" fill="#FFC15A"/>
+    <rect x="12" y="5" width="4" height="3" fill="#FFC15A"/>
+    <rect x="2" y="9" width="2" height="2" fill="#FF5A1F"/>
+    <rect x="8" y="8" width="3" height="3" fill="#FF5A1F"/>
+    <rect x="5" y="12" width="3" height="2" fill="#FF5A1F"/>
+    <rect x="12" y="12" width="2" height="2" fill="#8E2C06"/>
+    <rect x="1" y="13" width="2" height="2" fill="#8E2C06"/>
+    <rect x="10" y="14" width="2" height="1" fill="#8E2C06"/>
+    <rect width="16" height="1" y="15" fill="#8E2C06" opacity=".6"/>
+  </symbol>
+</svg>
 
-<header>
-<div class="container nav">
+<canvas id="embers" aria-hidden="true"></canvas>
 
-<div class="logo">MC.PROMO</div>
+<header id="top">
+  <div class="container nav">
+    <a href="#top" class="logo" aria-label="MC.PROMO — на главную">
+      <svg class="blk" viewBox="0 0 16 16" aria-hidden="true"><use href="#blk"/></svg>
+      <div>MC<span>.</span>PROMO</div>
+    </a>
 
-<nav class="menu" id="mobileMenu">
-<a href="#services">Услуги</a>
-<a href="#pricing">Тарифы</a>
-<a href="#contact">Контакты</a>
-</nav>
+    <nav class="menu" id="mobileMenu" aria-label="Основное меню">
+      <a href="#services">Услуги</a>
+      <a href="#cases">Кейсы</a>
+      <a href="#pricing">Тарифы</a>
+      <a href="#contact">Контакты</a>
+    </nav>
 
-<a href="https://t.me/lordsqk1?text=Здравствуйте! Хочу заказать продвижение Minecraft-сервера." target="_blank" class="btn">
-Заказать продвижение
-</a>
+    <span class="glow">
+      <a href="https://t.me/lordsqk1?text=Здравствуйте! Хочу заказать продвижение Minecraft-сервера." target="_blank" rel="noopener" class="btn notch">Заказать продвижение</a>
+    </span>
 
-<button class="burger" id="burgerBtn" aria-label="Открыть меню">
-<span></span>
-<span></span>
-<span></span>
-</button>
-
-</div>
+    <button class="burger" id="burgerBtn" aria-label="Открыть меню" aria-expanded="false" aria-controls="mobileMenu">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
 </header>
 
+<main>
+
+<!-- ============ HERO ============ -->
 <section class="hero">
+  <div class="container hero-grid">
 
-<div class="container">
+    <div class="hero-copy">
+      <div class="badge notch">Minecraft Promotion • TikTok • YouTube Shorts</div>
 
-<div class="hero-content">
+      <h1>
+        <span class="ln l1"><span>Продвигаю</span></span>
+        <span class="ln l2"><span>Minecraft-серверы</span></span>
+        <span class="ln l3"><span>через TikTok и YouTube Shorts</span></span>
+      </h1>
 
-<div class="hero-text">
+      <p class="hero-lead">Создаю вирусные нарезки, которые привлекают новых игроков на ваш сервер.</p>
 
-<div class="badge">
-Minecraft Promotion • TikTok • YouTube Shorts
-</div>
-
-<h1>
-Продвигаю
-<span>Minecraft-серверы</span>
-через TikTok и YouTube Shorts
-</h1>
-
-<p>
-Создаю вирусные нарезки, которые привлекают новых игроков на ваш сервер.
-</p>
-
-<div class="hero-buttons">
-
-<a href="https://t.me/lordsqk1?text=Здравствуйте! Хочу заказать продвижение Minecraft-сервера." target="_blank" class="btn">
-Заказать продвижение
-</a>
-
-<a href="#pricing" class="btn-outline">
-Посмотреть тарифы   
-</a>
-
-</div>
-
-</div>
-
-<div class="hero-image">
-
-   <div class="case-tabs">
-
-    <div class="tabs">
-        <button class="tab-btn active" onclick="showTab('tiktok', this)">
-            TikTok
-        </button>
-
-        <button class="tab-btn" onclick="showTab('youtube', this)">
-            YouTube Shorts
-        </button>
-
-        <button class="tab-btn" onclick="showTab('author', this)">
-            Авторский контент
-        </button>
+      <div class="hero-buttons">
+        <span class="glow">
+          <a href="https://t.me/lordsqk1?text=Здравствуйте! Хочу заказать продвижение Minecraft-сервера." target="_blank" rel="noopener" class="btn notch">Заказать продвижение</a>
+        </span>
+        <a href="#pricing" class="btn-ghost notch">Посмотреть тарифы</a>
+      </div>
     </div>
 
-    <!-- TikTok -->
-    <div id="tiktok" class="tab-content active">
+    <div class="stage" id="stage">
+      <div class="showcase notch">
 
-        <div class="shorts-container">
-
-            <div class="short-card">
-                <img src="images/video1.jpg" style="width:180px;height:360px;" class="video-img" alt="TikTok-ролик о Minecraft-сервере, пример 1">
-                <a href="https://vm.tiktok.com/ZNRwNpm3y/" target="_blank" class="video-link">
-                    Смотреть в TikTok
-                </a>
-            </div>
-
-            <div class="short-card">
-                <img src="images/video2.jpg" style="width:180px;height:360px;" class="video-img" alt="TikTok-ролик о Minecraft-сервере, пример 2">
-                <a href="https://vm.tiktok.com/ZNRwLEwoQ/" target="_blank" class="video-link">
-                    Смотреть в TikTok
-                </a>
-            </div>
-
-            <div class="short-card">
-                <img src="images/video3.jpg" style="width:180px;height:360px;" class="video-img" alt="TikTok-ролик о Minecraft-сервере, пример 3">
-                <a href="https://www.tiktok.com/t/ZTS8xEsva/" target="_blank" class="video-link">
-                    Смотреть в TikTok
-                </a>
-            </div>
-
+        <div class="tabs" role="tablist" aria-label="Примеры работ">
+          <button class="tab-btn" role="tab" id="tab-tiktok" aria-controls="tiktok" aria-selected="true" data-tab="tiktok">TikTok</button>
+          <button class="tab-btn" role="tab" id="tab-youtube" aria-controls="youtube" aria-selected="false" data-tab="youtube">YouTube Shorts</button>
+          <button class="tab-btn" role="tab" id="tab-author" aria-controls="author" aria-selected="false" data-tab="author">Авторский контент</button>
         </div>
 
-    </div>
+        <div class="panels">
 
-    <!-- YouTube -->
-    <div id="youtube" class="tab-content">
-
-        <div class="youtube-slider">
-
-            <button class="arrow" onclick="prevSlide()">
-                &#10094;
-            </button>
-
-            <div class="slide active">
-                <img src="images/yt2.jpg" class="video-img" alt="YouTube Shorts, пример 1">
-                <a href="https://youtube.com/shorts/18RNuIOvBCg?feature=share"
-                   target="_blank"
-                   class="video-link">
-                    Смотреть на YouTube
-                </a>
+          <!-- TikTok -->
+          <div id="tiktok" class="panel active" role="tabpanel" aria-labelledby="tab-tiktok">
+            <div class="phones" id="phones">
+              <div class="short-card">
+                <img src="images/video1.jpg" class="video-img" alt="TikTok-ролик о Minecraft-сервере, пример 1">
+                <a href="https://vm.tiktok.com/ZNRwNpm3y/" target="_blank" rel="noopener" class="video-link">Смотреть в TikTok</a>
+              </div>
+              <div class="short-card">
+                <img src="images/video2.jpg" class="video-img" alt="TikTok-ролик о Minecraft-сервере, пример 2">
+                <a href="https://vm.tiktok.com/ZNRwLEwoQ/" target="_blank" rel="noopener" class="video-link">Смотреть в TikTok</a>
+              </div>
+              <div class="short-card">
+                <img src="images/video3.jpg" class="video-img" alt="TikTok-ролик о Minecraft-сервере, пример 3">
+                <a href="https://www.tiktok.com/t/ZTS8xEsva/" target="_blank" rel="noopener" class="video-link">Смотреть в TikTok</a>
+              </div>
             </div>
+          </div>
 
-            <div class="slide">
-                <img src="images/yt1.jpg" class="video-img" alt="YouTube Shorts, пример 2">
-                <a href="https://youtube.com/shorts/JMS0oUUUPSI?feature=share"
-                   target="_blank"
-                   class="video-link">
-                    Смотреть на YouTube
-                </a>
+          <!-- YouTube -->
+          <div id="youtube" class="panel" role="tabpanel" aria-labelledby="tab-youtube">
+            <div class="slider" data-slider>
+              <button class="arrow prev" type="button" aria-label="Предыдущий">&#10094;</button>
+              <div class="slides">
+                <div class="slide active">
+                  <img src="images/yt2.jpg" class="video-img" alt="YouTube Shorts, пример 1">
+                  <a href="https://youtube.com/shorts/18RNuIOvBCg?feature=share" target="_blank" rel="noopener" class="video-link">Смотреть на YouTube</a>
+                </div>
+                <div class="slide">
+                  <img src="images/yt1.jpg" class="video-img" alt="YouTube Shorts, пример 2">
+                  <a href="https://youtube.com/shorts/JMS0oUUUPSI?feature=share" target="_blank" rel="noopener" class="video-link">Смотреть на YouTube</a>
+                </div>
+                <div class="slide">
+                  <img src="images/yt3.jpg" class="video-img" alt="Канал на YouTube">
+                  <a href="https://www.youtube.com/channel/UC3AXpGJT7UCg8niVcu9esOg" target="_blank" rel="noopener" class="video-link">Перейти на канал</a>
+                </div>
+                <div class="dots"></div>
+              </div>
+              <button class="arrow next" type="button" aria-label="Следующий">&#10095;</button>
             </div>
+          </div>
 
-            <div class="slide">
-                <img src="images/yt3.jpg" class="video-img" alt="Канал на YouTube">
-                <a href="https://www.youtube.com/channel/UC3AXpGJT7UCg8niVcu9esOg"
-                   target="_blank"
-                   class="video-link">
-                    Перейти на канал
-                </a>
+          <!-- Авторский контент -->
+          <div id="author" class="panel" role="tabpanel" aria-labelledby="tab-author">
+            <div class="slider" data-slider>
+              <button class="arrow prev" type="button" aria-label="Предыдущий">&#10094;</button>
+              <div class="slides">
+                <div class="slide active">
+                  <img src="images/author1.jpg" class="video-img" alt="Авторский ролик, пример 1">
+                  <a href="https://www.youtube.com/shorts/x9XeETYmlTw" target="_blank" rel="noopener" class="video-link">Смотреть</a>
+                </div>
+                <div class="slide">
+                  <img src="images/author2.jpg" class="video-img" alt="Авторский ролик, пример 2">
+                  <a href="https://www.youtube.com/shorts/Av05gVpSeOk" target="_blank" rel="noopener" class="video-link">Смотреть</a>
+                </div>
+                <div class="slide">
+                  <img src="images/author3.jpg" class="video-img" alt="Авторский ролик, пример 3">
+                  <a href="https://www.youtube.com/shorts/fWjRSiYAZao" target="_blank" rel="noopener" class="video-link">Смотреть</a>
+                </div>
+                <div class="dots"></div>
+              </div>
+              <button class="arrow next" type="button" aria-label="Следующий">&#10095;</button>
             </div>
-
-            <button class="arrow" onclick="nextSlide()">
-                &#10095;
-            </button>
+          </div>
 
         </div>
+      </div>
 
-    </div>
-
-    <!-- Авторский контент -->
-    <div id="author" class="tab-content">
-
-        <div class="youtube-slider">
-
-            <button class="arrow" onclick="prevAuthor()">
-                &#10094;
-            </button>
-
-            <div class="slide active">
-                <img src="images/author1.jpg" class="video-img" alt="Авторский ролик, пример 1">
-                <a href="https://www.youtube.com/shorts/x9XeETYmlTw"
-                   target="_blank"
-                   class="video-link">
-                    Смотреть
-                </a>
-            </div>
-
-            <div class="slide">
-                <img src="images/author2.jpg" class="video-img" alt="Авторский ролик, пример 2">
-                <a href="https://www.youtube.com/shorts/Av05gVpSeOk"
-                   target="_blank"
-                   class="video-link">
-                    Смотреть
-                </a>
-            </div>
-
-            <div class="slide">
-                <img src="images/author3.jpg" class="video-img" alt="Авторский ролик, пример 3">
-                <a href="https://www.youtube.com/shorts/fWjRSiYAZao"
-                   target="_blank"
-                   class="video-link">
-                    Смотреть
-                </a>
-            </div>
-
-            <button class="arrow" onclick="nextAuthor()">
-                &#10095;
-            </button>
-
+      <div class="float">
+        <div class="proof notch">
+          <svg class="blk" viewBox="0 0 16 16" aria-hidden="true"><use href="#blk"/></svg>
+          <div>
+            <b>+210</b>
+            <small>заходов на сервер за 13 дней</small>
+          </div>
         </div>
-
+      </div>
     </div>
 
-   </div>
-
-</div>
-
-</div>
-
-</div>
+  </div>
 </section>
 
+<!-- ============ STATS ============ -->
+<section class="stats-band" aria-label="Результаты в цифрах">
+  <div class="container">
+    <div class="stats notch">
+      <div class="stat">
+        <div class="stat-number">1M+</div>
+        <div class="stat-label">Просмотров за месяц</div>
+      </div>
+      <div class="stat">
+        <div class="stat-number">900+</div>
+        <div class="stat-label">Опубликованных роликов</div>
+      </div>
+      <div class="stat">
+        <div class="stat-number">70%</div>
+        <div class="stat-label">Трафика приходит из TikTok и YouTube</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ PROCESS ============ -->
 <section class="process">
-
-    <div class="container">
-
-        <h2 class="title">Как проходит работа</h2>
-
-       <div class="process-grid">
-
-    <div class="process-card">
-        <div class="process-icon">🔎</div>
-        <h3>Анализ контента</h3>
-        <p>
-            Самостоятельно нахожу длинные видео о вашем Minecraft-сервере на YouTube и выбираю самые интересные игровые моменты.
-        </p>
+  <div class="container">
+    <div class="sec-head">
+      <h2>Как проходит работа</h2>
     </div>
 
-    <div class="process-card">
-        <div class="process-icon">✂️</div>
-        <h3>Создание Shorts / TikTok</h3>
-        <p>
-            Делаю динамичные нарезки, добавляю монтаж, музыку и субтитры, чтобы ролики удерживали внимание зрителей.
-        </p>
+    <div class="steps" id="steps">
+      <div class="track" aria-hidden="true"><i></i></div>
+
+      <div class="step">
+        <div class="node notch">1</div>
+        <h3><span class="emoji">🔎</span>Анализ контента</h3>
+        <p>Самостоятельно нахожу длинные видео о вашем Minecraft-сервере на YouTube и выбираю самые интересные игровые моменты.</p>
+      </div>
+
+      <div class="step">
+        <div class="node notch">2</div>
+        <h3><span class="emoji">✂️</span>Создание Shorts / TikTok</h3>
+        <p>Делаю динамичные нарезки, добавляю монтаж, музыку и субтитры, чтобы ролики удерживали внимание зрителей.</p>
+      </div>
+
+      <div class="step">
+        <div class="node notch">3</div>
+        <h3><span class="emoji">📱</span>Публикация</h3>
+        <p>Загружаю готовые Shorts в TikTok и YouTube Shorts, чтобы они начали набирать охваты через алгоритмы платформ.</p>
+      </div>
+
+      <div class="step">
+        <div class="node notch">4</div>
+        <h3><span class="emoji">🚀</span>Новые игроки</h3>
+        <p>Вирусные ролики увеличивают узнаваемость сервера и помогают привлекать новых игроков.</p>
+      </div>
     </div>
-
-    <div class="process-card">
-        <div class="process-icon">📱</div>
-        <h3>Публикация</h3>
-        <p>
-            Загружаю готовые Shorts в TikTok и YouTube Shorts, чтобы они начали набирать охваты через алгоритмы платформ.
-        </p>
-    </div>
-
-    <div class="process-card">
-        <div class="process-icon">🚀</div>
-        <h3>Новые игроки</h3>
-        <p>
-            Вирусные ролики увеличивают узнаваемость сервера и помогают привлекать новых игроков.
-        </p>
-    </div>
-
-</div>
-
-    </div>
-
+  </div>
 </section>
 
+<!-- ============ SERVICES ============ -->
 <section id="services">
-<div class="container">
-
-<h2 class="title">Наши услуги</h2>
-
-<div class="cards">
-
-<div class="card">
-<h3>🎬 Нарезки</h3>
-<ul>
-<li>Поиск длинных видео на YouTube</li>
-<li>Выбор самых интересных моментов</li>
-<li>Динамичный монтаж и субтитры</li>
-<li>Публикация в TikTok и YouTube Shorts</li>
-</ul>
-<a href="#pricing" class="service-btn">Узнать тариф →</a>
-</div>
-
-<div class="card">
-<h3>🕹️ Обзор сервера</h3>
-<ul>
-<li>Обзор механик сервера</li>
-<li>Демонстрация уникальных фишек</li>
-<li>Качественный вертикальный монтаж</li>
-<li>Публикация в TikTok и YouTube Shorts</li>
-</ul>
-<a href="#pricing" class="service-btn">Узнать тариф →</a>
-</div>
-
-<div class="card">
-<h3>🎥 Авторский контент</h3>
-<ul>
-<li>Придумываем сюжет и сценарий</li>
-<li>Самостоятельно записываем материал</li>
-<li>Профессиональный монтаж</li>
-<li>Публикация в TikTok и YouTube Shorts</li>
-</ul>
-<a href="#pricing" class="service-btn">Узнать тариф →</a>
-</div>
-
-</div>
-
-</div>
-</section>
-
-<section>
-<div class="container">
-
-<div class="stats">
-
-<div class="stat">
-<div class="stat-number">1M+</div>
-<div>Просмотров за месяц</div>
-</div>
-
-<div class="stat">
-<div class="stat-number">900+</div>
-<div>Опубликованных роликов</div>
-</div>
-
-<div class="stat">
-<div class="stat-number">70%</div>
-<div>Трафика приходит из TikTok и YouTube</div>
-</div>
-
-</div>
-
-</div>
-</section>
-
-<section>
-<div class="container">
-
-<h2 class="title">Кейсы</h2>
-<p class="cases-subtitle">Реальные результаты наших клиентов</p>
-
-<div class="cases-grid">
-
-<div class="case-study reveal">
-
-    <span class="case-ribbon">🏆 Первый кейс</span>
-
-    <div class="case-images">
-        <img src="images/case1-joins.png" class="case-img" alt="График заходов на сервер по личному IP-адресу: 210 заходов">
+  <div class="container">
+    <div class="sec-head">
+      <h2>Наши услуги</h2>
     </div>
 
-    <ul class="case-stats-list">
-        <li>Тариф: 50 000 просмотров нарезок</li>
-        <li>Выполнили за 13 дней</li>
-        <li>210 заходов по личному IP</li>
-    </ul>
+    <div class="cards">
+      <div class="card notch">
+        <h3>🎬 Нарезки</h3>
+        <ul>
+          <li>Поиск длинных видео на YouTube</li>
+          <li>Выбор самых интересных моментов</li>
+          <li>Динамичный монтаж и субтитры</li>
+          <li>Публикация в TikTok и YouTube Shorts</li>
+        </ul>
+        <a href="#pricing" class="service-btn notch">Узнать тариф <i>→</i></a>
+      </div>
 
-</div>
+      <div class="card notch">
+        <h3>🕹️ Обзор сервера</h3>
+        <ul>
+          <li>Обзор механик сервера</li>
+          <li>Демонстрация уникальных фишек</li>
+          <li>Качественный вертикальный монтаж</li>
+          <li>Публикация в TikTok и YouTube Shorts</li>
+        </ul>
+        <a href="#pricing" class="service-btn notch">Узнать тариф <i>→</i></a>
+      </div>
 
-<div class="case-study reveal">
+      <div class="card notch">
+        <h3>🎥 Авторский контент</h3>
+        <ul>
+          <li>Придумываем сюжет и сценарий</li>
+          <li>Самостоятельно записываем материал</li>
+          <li>Профессиональный монтаж</li>
+          <li>Публикация в TikTok и YouTube Shorts</li>
+        </ul>
+        <a href="#pricing" class="service-btn notch">Узнать тариф <i>→</i></a>
+      </div>
+    </div>
+  </div>
+</section>
 
-    <span class="case-ribbon">🔥 Второй кейс</span>
-
-    <div class="case-images">
-        <img src="images/case2-joins.png" class="case-img" alt="График заходов на сервер по личному IP-адресу: 112 заходов">
+<!-- ============ CASES ============ -->
+<section id="cases">
+  <div class="container">
+    <div class="sec-head">
+      <h2>Кейсы</h2>
+      <p>Реальные результаты наших клиентов</p>
     </div>
 
-    <ul class="case-stats-list">
-        <li>Тариф: 50 000 просмотров нарезок</li>
-        <li>Выполнили за 12 дней</li>
-        <li>112 заходов по личному IP</li>
-    </ul>
+    <div class="cases-grid">
 
-</div>
+      <article class="case notch">
+        <div class="case-head">
+          <svg class="blk" viewBox="0 0 16 16" aria-hidden="true"><use href="#blk"/></svg>
+          <div>
+            <h3>Первый кейс</h3>
+            <p>Тариф: 50 000 просмотров нарезок</p>
+          </div>
+          <div class="ping" aria-hidden="true"><i style="--k:1"></i><i style="--k:2"></i><i style="--k:3"></i><i style="--k:4"></i><i style="--k:5"></i></div>
+        </div>
 
-</div>
+        <div class="case-num">
+          <span class="px-num" data-count="210" data-prefix="+">+210</span>
+          <span>заходов по личному IP</span>
+        </div>
 
-</div>
+        <button class="shot" type="button" style="--shot:url(images/case1-joins.png)" aria-label="Увеличить график заходов, первый кейс">
+          <img src="images/case1-joins.png" class="case-img" alt="График заходов на сервер по личному IP-адресу: 210 заходов">
+        </button>
+
+        <div class="case-days">Выполнили за 13 дней</div>
+      </article>
+
+      <article class="case notch">
+        <div class="case-head">
+          <svg class="blk" viewBox="0 0 16 16" aria-hidden="true"><use href="#blk"/></svg>
+          <div>
+            <h3>Второй кейс</h3>
+            <p>Тариф: 50 000 просмотров нарезок</p>
+          </div>
+          <div class="ping" aria-hidden="true"><i style="--k:1"></i><i style="--k:2"></i><i style="--k:3"></i><i style="--k:4"></i><i style="--k:5"></i></div>
+        </div>
+
+        <div class="case-num">
+          <span class="px-num" data-count="112" data-prefix="+">+112</span>
+          <span>заходов по личному IP</span>
+        </div>
+
+        <button class="shot" type="button" style="--shot:url(images/case2-joins.png)" aria-label="Увеличить график заходов, второй кейс">
+          <img src="images/case2-joins.png" class="case-img" alt="График заходов на сервер по личному IP-адресу: 112 заходов">
+        </button>
+
+        <div class="case-days">Выполнили за 12 дней</div>
+      </article>
+
+    </div>
+  </div>
 </section>
 
+<!-- ============ WHY ============ -->
 <section>
-<div class="container">
+  <div class="container why">
+    <div class="sec-head">
+      <h2>Почему это работает</h2>
+    </div>
 
-<h2 class="title">Почему это работает</h2>
-
-<div class="why">
-
-<div class="why-card">
-<h3>Быстрый охват</h3>
-<p>Алгоритмы Shorts и TikTok быстро продвигают контент.</p>
-</div>
-
-<div class="why-card">
-<h3>Аудитория Minecraft</h3>
-<p>Ролики показываются именно игрокам Minecraft.</p>
-</div>
-
-<div class="why-card">
-<h3>Вирусный потенциал</h3>
-<p>Каждый ролик может получить сотни тысяч просмотров.</p>
-</div>
-
-</div>
-
-</div>
+    <div class="why-list">
+      <div class="why-item">
+        <h3>Быстрый охват</h3>
+        <p>Алгоритмы Shorts и TikTok быстро продвигают контент.</p>
+      </div>
+      <div class="why-item">
+        <h3>Аудитория Minecraft</h3>
+        <p>Ролики показываются именно игрокам Minecraft.</p>
+      </div>
+      <div class="why-item">
+        <h3>Вирусный потенциал</h3>
+        <p>Каждый ролик может получить сотни тысяч просмотров.</p>
+      </div>
+    </div>
+  </div>
 </section>
 
+<!-- ============ PRICING ============ -->
 <section id="pricing">
-<div class="container">
-
-<h2 class="title">Стоимость услуг</h2>
-
-<p class="pricing-subtitle">
-Выберите подходящий формат продвижения для вашего Minecraft-сервера.
-</p>
-
-<div class="pricing">
-
-    <!-- Нарезки -->
-  <div class="price-card featured">
-
-    <div class="popular-badge">
-        🔥 Самая популярная
+  <div class="container">
+    <div class="sec-head">
+      <h2>Стоимость услуг</h2>
+      <p>Выберите подходящий формат продвижения для вашего Minecraft-сервера.</p>
     </div>
 
-    <h3>🎬 Нарезки</h3>
+    <div class="pricing">
 
-    <p class="price-desc">
-        Монтаж, субтитры и публикация роликов
-        в TikTok и YouTube Shorts.
-    </p>
-
-    <div class="price-list">
-        <div>10К просмотров <strong>400 ₽</strong></div>
-        <div>50К просмотров <strong>1650 ₽</strong></div>
-        <div>100К просмотров <strong>3750 ₽</strong></div>
-    </div>
-
-    <a class="order-btn" href="https://t.me/lordsqk1?text=Здравствуйте! Хочу заказать «Нарезки»." target="_blank">Заказать</a>
-
-</div>
-
-    <!-- Обзор -->
-<div class="price-card">
-
-    <div class="price-stack">
-
-        <div class="price-top">
-            <h3>🕹️ Обзор сервера</h3>
+      <!-- Нарезки -->
+      <div class="price-card featured notch">
+        <div class="popular-badge">🔥 Самая популярная</div>
+        <h3>🎬 Нарезки</h3>
+        <p class="price-desc">Монтаж, субтитры и публикация роликов в TikTok и YouTube Shorts.</p>
+        <div class="price-list">
+          <div>10К просмотров <strong>400 ₽</strong></div>
+          <div>50К просмотров <strong>1650 ₽</strong></div>
+          <div>100К просмотров <strong>3750 ₽</strong></div>
         </div>
+        <a class="order-btn notch" href="https://t.me/lordsqk1?text=Здравствуйте! Хочу заказать «Нарезки»." target="_blank" rel="noopener">Заказать</a>
+      </div>
 
-        <div class="price-middle">
-            <p class="price-desc">
-                Покажем механики, фишки и преимущества
-                вашего сервера в формате вертикального видео.
-            </p>
+      <!-- Обзор -->
+      <div class="price-card notch">
+        <h3>🕹️ Обзор сервера</h3>
+        <p class="price-desc">Покажем механики, фишки и преимущества вашего сервера в формате вертикального видео.</p>
+        <div class="price-mid">
+          <div class="price-value">500 ₽</div>
+          <div class="price-subtext">за 1 вертикальный ролик</div>
         </div>
+        <a class="order-btn notch" href="https://t.me/lordsqk1?text=Здравствуйте! Хочу заказать «Обзор сервера»." target="_blank" rel="noopener">Заказать</a>
+      </div>
 
-        <div class="price-value">500 ₽</div>
-
-        <div class="price-subtext">
-            за 1 вертикальный ролик
+      <!-- Авторский -->
+      <div class="price-card notch">
+        <h3>🎥 Авторский контент</h3>
+        <p class="price-desc">Полностью оригинальное видео: идея, сценарий, съемка и профессиональный монтаж.</p>
+        <div class="price-mid">
+          <div class="price-value">1500 ₽</div>
+          <div class="price-subtext">за 1 вертикальный ролик</div>
         </div>
-
-        <div class="price-action">
-            <a class="order-btn" href="https://t.me/lordsqk1?text=Здравствуйте! Хочу заказать «Обзор сервера»." target="_blank">Заказать</a>
-        </div>
+        <a class="order-btn notch" href="https://t.me/lordsqk1?text=Здравствуйте! Хочу заказать «Авторский контент»." target="_blank" rel="noopener">Заказать</a>
+      </div>
 
     </div>
-
-</div>
-
-    <!-- Авторский -->
-<div class="price-card">
-
-    <div class="price-stack">
-
-        <div class="price-top">
-            <h3>🎥 Авторский контент</h3>
-        </div>
-
-        <div class="price-middle">
-            <p class="price-desc">
-                Полностью оригинальное видео:
-                идея, сценарий, съемка и профессиональный монтаж.
-            </p>
-        </div>
-
-        <div class="price-value">1500 ₽</div>
-
-        <div class="price-subtext">
-            за 1 вертикальный ролик
-        </div>
-
-        <div class="price-action">
-            <a class="order-btn" href="https://t.me/lordsqk1?text=Здравствуйте! Хочу заказать «Авторский контент»." target="_blank">Заказать</a>
-        </div>
-
-    </div>
-
-</div>
-
-
-
-</div>
-
-
-</div>
+  </div>
 </section>
 
+<!-- ============ CONTACT ============ -->
 <section id="contact">
-<div class="container">
-
-<div class="contact">
-
-<h2>Готовы увеличить онлайн?</h2>
-
-<p class="cta-text">
-    Напишите мне в Telegram и обсудим продвижение вашего сервера.
-</p>
-
-<div class="info-box">
-    💬 Предложения на <strong>100К+ просмотров</strong> и индивидуальные условия обсуждаются лично.
-</div>
-
-
-<a href="https://t.me/lordsqk1?text=Здравствуйте! Хочу заказать продвижение Minecraft-сервера." target="_blank" class="btn">
-    Перейти в Telegram
-</a>
-
-</div>
-
-</div>
+  <div class="container">
+    <div class="contact notch">
+      <h2>Готовы увеличить онлайн?</h2>
+      <p class="cta-text">Напишите мне в Telegram и обсудим продвижение вашего сервера.</p>
+      <div class="info-box">💬 Предложения на <strong>100К+ просмотров</strong> и индивидуальные условия обсуждаются лично.</div>
+      <span class="glow">
+        <a href="https://t.me/lordsqk1?text=Здравствуйте! Хочу заказать продвижение Minecraft-сервера." target="_blank" rel="noopener" class="btn notch">Перейти в Telegram</a>
+      </span>
+    </div>
+  </div>
 </section>
+
+</main>
 
 <footer>
-© 2026 MC.PROMO
+  <div class="container foot">
+    <a href="#top" class="logo" aria-label="MC.PROMO — наверх">
+      <svg class="blk" viewBox="0 0 16 16" aria-hidden="true"><use href="#blk"/></svg>
+      <div>MC<span>.</span>PROMO</div>
+    </a>
+    <nav class="foot-links" aria-label="Ссылки в подвале">
+      <a href="#services">Услуги</a>
+      <a href="#cases">Кейсы</a>
+      <a href="#pricing">Тарифы</a>
+      <a href="https://t.me/lordsqk1" target="_blank" rel="noopener">Telegram</a>
+    </nav>
+    <div>© 2026 MC.PROMO</div>
+  </div>
 </footer>
-<div id="imageModal" class="modal">
-    <span class="close">&times;</span>
-    <img id="modalImg" alt="Увеличенное изображение">
+
+<div id="imageModal" class="modal" role="dialog" aria-modal="true" aria-label="Увеличенное изображение">
+  <button class="close" type="button" aria-label="Закрыть">&times;</button>
+  <img id="modalImg" alt="Увеличенное изображение">
 </div>
 
 <script>
-const modal = document.getElementById('imageModal');
-const modalImg = document.getElementById('modalImg');
-const images = document.querySelectorAll('.video-img, .case-img');
-const close = document.querySelector('.close');
+(function(){
+  const reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  const canHover = window.matchMedia('(hover:hover)').matches;
 
-images.forEach(img => {
-    img.onclick = () => {
-        modal.style.display = 'flex';
-        modalImg.src = img.src;
-    };
-});
+  /* ---------- header ---------- */
+  const header = document.querySelector('header');
+  const onScroll = () => header.classList.toggle('scrolled', window.scrollY > 24);
+  onScroll();
+  window.addEventListener('scroll', onScroll, {passive:true});
 
-close.onclick = () => {
-    modal.style.display = 'none';
-};
+  /* ---------- burger ---------- */
+  const burger = document.getElementById('burgerBtn');
+  const menu = document.getElementById('mobileMenu');
+  burger.addEventListener('click', () => {
+    const open = menu.classList.toggle('open');
+    burger.setAttribute('aria-expanded', open);
+  });
+  menu.querySelectorAll('a').forEach(a => a.addEventListener('click', () => {
+    menu.classList.remove('open');
+    burger.setAttribute('aria-expanded', 'false');
+  }));
 
-modal.onclick = e => {
-    if (e.target === modal) {
-        modal.style.display = 'none';
+  /* ---------- tabs ---------- */
+  const tabs = [...document.querySelectorAll('.tab-btn')];
+  function selectTab(btn){
+    tabs.forEach(t => {
+      const on = t === btn;
+      t.setAttribute('aria-selected', on);
+      t.tabIndex = on ? 0 : -1;
+      document.getElementById(t.dataset.tab).classList.toggle('active', on);
+    });
+  }
+  tabs.forEach((t, i) => {
+    t.addEventListener('click', () => selectTab(t));
+    t.addEventListener('keydown', e => {
+      if (e.key === 'ArrowRight' || e.key === 'ArrowLeft'){
+        const next = tabs[(i + (e.key === 'ArrowRight' ? 1 : -1) + tabs.length) % tabs.length];
+        selectTab(next); next.focus();
+      }
+    });
+    if (i) t.tabIndex = -1;
+  });
+
+  /* ---------- sliders (each one independent) ---------- */
+  document.querySelectorAll('[data-slider]').forEach(sl => {
+    const slides = [...sl.querySelectorAll('.slide')];
+    const dots = sl.querySelector('.dots');
+    let i = 0;
+    slides.forEach((_, k) => {
+      const d = document.createElement('button');
+      d.type = 'button';
+      d.setAttribute('aria-label', 'Слайд ' + (k + 1));
+      d.addEventListener('click', () => go(k));
+      dots.appendChild(d);
+    });
+    function go(n){
+      i = (n + slides.length) % slides.length;
+      slides.forEach((s, k) => s.classList.toggle('active', k === i));
+      [...dots.children].forEach((d, k) => d.classList.toggle('active', k === i));
     }
-};
+    sl.querySelector('.prev').addEventListener('click', () => go(i - 1));
+    sl.querySelector('.next').addEventListener('click', () => go(i + 1));
+    go(0);
+  });
 
-const burgerBtn = document.getElementById('burgerBtn');
-const mobileMenu = document.getElementById('mobileMenu');
+  /* ---------- image modal ---------- */
+  const modal = document.getElementById('imageModal');
+  const modalImg = document.getElementById('modalImg');
+  const closeBtn = modal.querySelector('.close');
+  let lastFocus = null;
+  function openModal(src, alt){
+    lastFocus = document.activeElement;
+    modalImg.src = src; modalImg.alt = alt || '';
+    modal.classList.add('open');
+    closeBtn.focus();
+  }
+  function closeModal(){
+    modal.classList.remove('open');
+    if (lastFocus) lastFocus.focus();
+  }
+  document.addEventListener('click', e => {
+    const shot = e.target.closest('.shot');
+    const img = shot ? shot.querySelector('img') : e.target.closest('.video-img');
+    if (img) openModal(img.src, img.alt);
+  });
+  closeBtn.addEventListener('click', closeModal);
+  modal.addEventListener('click', e => { if (e.target === modal) closeModal(); });
+  document.addEventListener('keydown', e => { if (e.key === 'Escape' && modal.classList.contains('open')) closeModal(); });
 
-if (burgerBtn && mobileMenu) {
-    burgerBtn.onclick = () => {
-        mobileMenu.classList.toggle('open');
-    };
-
-    mobileMenu.querySelectorAll('a').forEach(link => {
-        link.addEventListener('click', () => {
-            mobileMenu.classList.remove('open');
-        });
-    });
-}
-
-/* Scroll reveal for cards */
-const revealTargets = document.querySelectorAll(
-    '.card, .stat, .why-card, .price-card, .process-card, .case-box, .case-study'
-);
-revealTargets.forEach(el => el.classList.add('reveal'));
-
-const revealObserver = new IntersectionObserver(entries => {
-    entries.forEach(entry => {
-        if (entry.isIntersecting) {
-            entry.target.classList.add('in-view');
-            revealObserver.unobserve(entry.target);
-        }
-    });
-}, { threshold: 0.15 });
-
-revealTargets.forEach(el => revealObserver.observe(el));
-
-/* Count-up animation for stat numbers */
-const statNumbers = document.querySelectorAll('.stat-number');
-
-function animateCount(el){
+  /* ---------- count-up ---------- */
+  function animateCount(el){
     const raw = el.textContent.trim();
-    const match = raw.match(/[\d.]+/);
-    if (!match) return;
+    const m = raw.match(/\d+(\.\d+)?/);
+    if (!m || reduce) return;
+    const target = parseFloat(m[0]);
+    const pre = raw.slice(0, m.index);
+    const suf = raw.slice(m.index + m[0].length);
+    const dur = 1500, t0 = performance.now();
+    (function tick(now){
+      const p = Math.min((now - t0) / dur, 1);
+      const e = 1 - Math.pow(1 - p, 3);
+      el.textContent = pre + Math.round(target * e) + suf;
+      if (p < 1) requestAnimationFrame(tick); else el.textContent = raw;
+    })(t0);
+  }
+  const countIO = new IntersectionObserver(es => es.forEach(en => {
+    if (en.isIntersecting){ animateCount(en.target); countIO.unobserve(en.target); }
+  }), {threshold:.6});
+  document.querySelectorAll('.stat-number, .px-num').forEach(el => countIO.observe(el));
 
-    const target = parseFloat(match[0]);
-    const suffix = raw.replace(match[0], '');
-    const duration = 1400;
-    const start = performance.now();
+  /* ---------- case ping bars ---------- */
+  const caseIO = new IntersectionObserver(es => es.forEach(en => {
+    if (en.isIntersecting){ en.target.classList.add('on'); caseIO.unobserve(en.target); }
+  }), {threshold:.35});
+  document.querySelectorAll('.case').forEach(el => caseIO.observe(el));
 
-    function tick(now){
-        const progress = Math.min((now - start) / duration, 1);
-        const eased = 1 - Math.pow(1 - progress, 3);
-        const current = Math.round(target * eased * 10) / 10;
-        el.textContent = (Number.isInteger(target) ? Math.round(current) : current) + suffix;
+  /* ---------- process steps ---------- */
+  const steps = document.getElementById('steps');
+  const stepsIO = new IntersectionObserver(es => es.forEach(en => {
+    if (en.isIntersecting){ steps.classList.add('play'); stepsIO.disconnect(); }
+  }), {threshold:.3});
+  stepsIO.observe(steps);
 
-        if (progress < 1) {
-            requestAnimationFrame(tick);
-        } else {
-            el.textContent = raw;
-        }
-    }
-
-    requestAnimationFrame(tick);
-}
-
-const statObserver = new IntersectionObserver(entries => {
-    entries.forEach(entry => {
-        if (entry.isIntersecting) {
-            animateCount(entry.target);
-            statObserver.unobserve(entry.target);
-        }
+  /* ---------- card spotlight ---------- */
+  if (canHover && !reduce){
+    document.querySelectorAll('.card').forEach(c => {
+      c.addEventListener('pointermove', e => {
+        const r = c.getBoundingClientRect();
+        c.style.setProperty('--mx', (e.clientX - r.left) + 'px');
+        c.style.setProperty('--my', (e.clientY - r.top) + 'px');
+      });
     });
-}, { threshold: 0.5 });
 
-statNumbers.forEach(el => statObserver.observe(el));
+    /* ---------- hero tilt ---------- */
+    const stage = document.getElementById('stage');
+    const showcase = stage.querySelector('.showcase');
+    stage.addEventListener('pointermove', e => {
+      const r = stage.getBoundingClientRect();
+      const x = (e.clientX - r.left) / r.width - .5;
+      const y = (e.clientY - r.top) / r.height - .5;
+      showcase.style.transform = `perspective(1400px) rotateY(${x * 7}deg) rotateX(${-y * 6}deg)`;
+    });
+    stage.addEventListener('pointerleave', () => { showcase.style.transform = ''; });
+    showcase.style.transition = 'transform .25s ease-out';
+  }
 
-function showTab(tab, button){
+  /* ---------- pixel embers ---------- */
+  const c = document.getElementById('embers');
+  const ctx = c.getContext('2d');
+  const colors = ['#FF5A1F', '#FF8A2B', '#FFC15A', '#C93F0B'];
+  let W, H, dpr, parts = [], raf = null;
 
-    document.querySelectorAll('.tab-content')
-        .forEach(el => el.classList.remove('active'));
-
-    document.querySelectorAll('.tab-btn')
-        .forEach(el => el.classList.remove('active'));
-
-    document.getElementById(tab)
-        .classList.add('active');
-
-    button.classList.add('active');
-}
-
-let current = 0;
-const slides = document.querySelectorAll('.slide');
-
-function showSlide(index){
-    slides.forEach(slide =>
-        slide.classList.remove('active')
-    );
-
-    slides[index].classList.add('active');
-}
-
-function nextSlide(){
-    current++;
-
-    if(current >= slides.length){
-        current = 0;
+  function spawn(init){
+    const s = 2 + ((Math.random() * 3) | 0);
+    return {
+      x: Math.random() * W,
+      y: init ? Math.random() * H : H + 12 * dpr,
+      s: s * dpr * 1.4,
+      vy: (.22 + Math.random() * .7) * dpr,
+      sw: Math.random() * 6.28,
+      col: colors[(Math.random() * colors.length) | 0]
+    };
+  }
+  function resize(){
+    dpr = Math.min(window.devicePixelRatio || 1, 2);
+    W = c.width = Math.floor(innerWidth * dpr);
+    H = c.height = Math.floor(innerHeight * dpr);
+    const n = innerWidth < 700 ? 24 : 58;
+    while (parts.length < n) parts.push(spawn(true));
+    parts.length = n;
+    if (reduce) draw();
+  }
+  function draw(){
+    ctx.clearRect(0, 0, W, H);
+    for (const p of parts){
+      ctx.globalAlpha = Math.max(0, Math.min(1, (p.y / H) * 1.25)) * .7;
+      ctx.fillStyle = p.col;
+      ctx.fillRect(Math.round(p.x), Math.round(p.y), p.s, p.s);
     }
-
-    showSlide(current);
-}
-
-function prevSlide(){
-    current--;
-
-    if(current < 0){
-        current = slides.length - 1;
+    ctx.globalAlpha = 1;
+  }
+  function frame(){
+    for (const p of parts){
+      p.y -= p.vy;
+      p.sw += .012;
+      p.x += Math.sin(p.sw) * .35 * dpr;
+      if (p.y < -12) Object.assign(p, spawn(false));
     }
-
-    showSlide(current);
-}
-let authorIndex = 0;
-
-function showAuthor(index){
-    const slides = document.querySelectorAll('#author .slide');
-
-    slides.forEach(slide => slide.classList.remove('active'));
-    slides[index].classList.add('active');
-}
-
-function nextAuthor(){
-    const slides = document.querySelectorAll('#author .slide');
-
-    authorIndex++;
-    if(authorIndex >= slides.length){
-        authorIndex = 0;
-    }
-
-    showAuthor(authorIndex);
-}
-
-function prevAuthor(){
-    const slides = document.querySelectorAll('#author .slide');
-
-    authorIndex--;
-    if(authorIndex < 0){
-        authorIndex = slides.length - 1;
-    }
-
-    showAuthor(authorIndex);
-}
+    draw();
+    raf = requestAnimationFrame(frame);
+  }
+  resize();
+  window.addEventListener('resize', resize);
+  if (!reduce){
+    frame();
+    document.addEventListener('visibilitychange', () => {
+      if (document.hidden){ cancelAnimationFrame(raf); raf = null; }
+      else if (!raf){ frame(); }
+    });
+  }
+})();
 </script>
-
 </body>
 </html>
